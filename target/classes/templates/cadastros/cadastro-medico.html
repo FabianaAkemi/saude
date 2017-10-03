@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/home}">
+<head>
+    <title>Cadastro de Médico</title>
+</head>
+<body>
+    <section layout:fragment="conteudo">
+
+        <div class="page-header">
+            <div class="container-fluid">
+                <h1>
+                    Cadastro de Médico
+                </h1>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+        
+            <th:block th:include="fragmentos/MensagemSucesso"></th:block>
+        
+            <form method="POST" class="form-vertical  js-form-loading" th:object="${medico}" th:action="@{/saude/medico}">
+			   <th:block th:include="fragmentos/MensagensErro"></th:block>	
+				          
+               <input type="hidden" th:field="*{id}"/>
+
+                <div class="row">
+                    <div class="form-group  col-sm-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group  col-sm-6" >
+                        <label for="crm">CRM</label>
+                        <input class="form-control" id="crm" type="text" th:field="*{crm}"/>
+                    </div>
+
+                    <div class="form-group  col-sm-6">
+                        <label for="especialista">Especialista</label>
+                        <select id="especialista" class="form-control" th:field="*{tipoEspecialista}">
+                            <option value="">Selecione </option>
+                            <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}" th:text="#{|tipoEsp.${tipoEspecialista}|}"></option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group  col-sm-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
+                    </div>
+
+                    <div class="form-group  col-sm-8">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" th:field="*{email}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn  btn-primary" type="submit">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</body>
+</html>

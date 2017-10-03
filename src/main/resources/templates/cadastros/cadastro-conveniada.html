@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/home}">
+<head>
+    <title>Cadastro de Médico</title>
+</head>
+<body>
+<section layout:fragment="conteudo">
+
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>
+                Cadastro de Conveniada
+            </h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <form method="POST" class="form-vertical  js-form-loading" th:object="${conveniada}">
+
+            <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <th:block th:each="error : ${#fields.detailedErrors()}">
+                    <div>
+                        <i class="fa  fa-exclamation-circle"></i>
+                        <span th:text="${error.message}"></span>
+                    </div>
+                </th:block>
+            </div>
+
+            <div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-sm-12">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-sm-4">
+                    <label for="inscricao">Inscrição Estadual</label>
+                    <input type="text" class="form-control" id="inscricao" th:field="*{ie}"/>
+                </div>
+
+                <div class="form-group  col-sm-4" >
+                    <label for="cnpj">CNPJ</label>
+                    <input type="text" class="form-control" id="cnpj" th:field="*{cnpj}"/>
+                </div>
+
+                <div class="form-group  col-sm-4">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-sm-6">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" class="form-control" id="logradouro" th:field="*{logradouro}"/>
+                </div>
+
+                <div class="form-group  col-sm-3">
+                    <label for="numero">Número</label>
+                    <input type="text" class="form-control" id="numero" th:field="*{numero}"/>
+                </div>
+
+                <div class="form-group  col-sm-3">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" th:field="*{complemento}"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-sm-6">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" th:field="*{cep}"/>
+                </div>
+
+                <div class="form-group  col-sm-6">
+                    <label  for="cidadeUf">Cidade</label>
+                    <input type="text" class="form-control" id="cidadeUf" th:field="*{cidadeUf}"/>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <button class="btn  btn-primary" type="submit">Salvar</button>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+</body>
+</html>

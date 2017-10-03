@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+    <aside class="aw-layout-sidebar  js-sidebar" th:fragment="sidebar">
+        <div class="aw-layout-sidebar__content">
+
+            <nav class="aw-menu  js-menu">
+                <ul class="aw-menu__list">
+
+                    <li class="aw-menu__item  is-active">
+                        <a href="#">
+                            <i class="fa  fa-fw  fa-file-text"></i><span>Cadastrar</span>
+                            <i class="aw-menu__navigation-icon  fa"></i>
+                        </a>
+
+                        <ul class="aw-menu__list  aw-menu__list--sublist">
+                            <li class="aw-menu__item  aw-menu__item--link is-active">
+                                <a th:href="@{saude/medico}"><span>Cadastro Médico</span></a>
+                            </li>
+
+                            <li class="aw-menu__item  aw-menu__item--link">
+                                <a th:href="@{/paciente}"><span>Cadastro Paciente</span></a>
+                            </li>
+
+
+                            <li class="aw-menu__item  aw-menu__item--link">
+                                <a th:href="@{saude/conveniada}"><span>Cadastro Conveniada</span></a>
+                            </li>
+
+                            <li class="aw-menu__item  aw-menu__item--link">
+                                <a th:href="@{saude/usuario}"><span>Cadastro Usuário</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="aw-menu__item">
+                        <a href="#">
+                            <i class="fa fa-fw fa-search"></i><span>Pesquisar</span>
+                            <i class="aw-menu__navigation-icon  fa"></i>
+                        </a>
+                        <ul class="aw-menu__list  aw-menu__list--sublist">
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/medicos}">Pesquisar Médicos</a></li>
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/pacientes}">Pesquisar Pacientes</a></li>
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/conveniadas}">Pesquisar Conveniadas</a></li>
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/usuarios}">Pesquisar Usuários</a></li>
+                        </ul>
+                    </li>
+
+                    
+
+                </ul>
+            </nav>
+
+        </div>
+    </aside>
+
+
+</body>
+</html>
