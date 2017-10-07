@@ -48,7 +48,6 @@ public class Paciente implements Serializable {
 	private String complemento;
 
 	@NotNull
-	@Size(min = 1, max = 10)
 	private Long cep;
 
 	@NotBlank

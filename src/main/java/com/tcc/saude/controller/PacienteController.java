@@ -1,7 +1,8 @@
 package com.tcc.saude.controller;
 
-import javax.validation.Valid;
 
+import com.tcc.saude.model.Paciente;
+import com.tcc.saude.service.CadastroPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,18 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.tcc.saude.model.Paciente;
-import com.tcc.saude.repository.Pacientes;
-import com.tcc.saude.service.CadastroPacienteService;
+import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/pacientes")
 public class PacienteController {
 
 
 	@Autowired
 	private CadastroPacienteService cadastroPacienteService;
 
-	@RequestMapping("/pacientes/novo")
+	@RequestMapping("/novo")
 	private ModelAndView novo(Paciente paciente) {
 
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-paciente");
@@ -30,7 +30,7 @@ public class PacienteController {
 
 	}
 	
-	@RequestMapping(value = "/pacientes/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	private ModelAndView salvar(@Valid Paciente paciente, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
