@@ -42,8 +42,8 @@
                     </div>
 
                     <div class="form-group  col-sm-6">
-                        <label for="especialista">Especialista</label>
-                        <select id="especialista" class="form-control" th:field="*{tipoEspecialista}">
+                        <label for="especialista">Especialidade</label>
+                        <select id="especialidade" class="form-control" th:field="*{tipoEspecialista}">
                             <option value="">Selecione </option>
                             <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}" th:text="#{|tipoEsp.${tipoEspecialista}|}"></option>
                         </select>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn  btn-primary" type="submit">Salvar</button>
+                    <button class="btn  btn-primary" type="submit" id="salvar">Salvar</button>
                 </div>
 
             </form>
