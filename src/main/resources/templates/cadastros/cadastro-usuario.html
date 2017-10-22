@@ -2,89 +2,97 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:saude="http://tcc.saude"
       layout:decorate="~{layout/home}">
 
 <head>
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/vendors/bootstrap-switch.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 </head>
+
+<body>
 <section layout:fragment="conteudo">
 
     <div class="page-header">
-        <div class="container-fluid">
-            <h1>
-                Cadastro de usuário
-            </h1>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-    
-    	<th:block th:include="fragmentos/MensagemSucesso"></th:block>
-    	
-        <form method="post" class="form-vertical  js-form-loading" th:object="${usuario}">
-			<th:block th:include="fragmentos/MensagensErro"></th:block>	
-
+		<div class="container-fluid">
+			<h1>
+				Cadastro de usuário
+			</h1>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<form method="POST" th:object="${usuario}">
+			<saude:message/>
+			
 			<div class="row">
-                <div class="form-group  col-sm-12">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" autofocus="autofocus"/>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group  col-sm-4">
-                    <label class="control-label">Grupos</label>
-                    <div>
-                        <div class="checkbox  checkbox-inline">
-                            <input type="checkbox" />
-                            <label>Atendente</label>
-                        </div>
-                        <div class="checkbox  checkbox-inline">
-                            <input type="checkbox" />
-                            <label>Enfermeiro</label>
-                        </div>
-                        <div class="checkbox  checkbox-inline">
-                            <input type="checkbox" />
-                            <label>Médico</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group  col-sm-3">
-                    <label for="dataNascimento">Data de nascimento</label>
-                    <input type="text" class="form-control" id="dataNascimento"/>
-                </div>
-
-                <div class="form-group  col-sm-5">
-                    <label for="email">E-mail</label>
-                    <input type="text" class="form-control" id="email"/>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="form-group  col-sm-3">
-                    <label for="senha">Senha</label>
-                    <input type="password" class="form-control" id="senha"/>
-                </div>
-
-                <div class="form-group  col-sm-3">
-                    <label for="confirmacaoSenha">Confirmação de senha</label>
-                    <input type="password" class="form-control" id="confirmacaoSenha"/>
-                </div>
-
-                <div class="form-group  col-sm-3">
-                    <label for="status">Status</label>
-                    <div>
-                    <input type="checkbox" checked data-toggle="toggle" id="status">
-                    </div>
-                </div>
-
-            </div>
-
-            <button type="submit" class="btn  btn-primary">Salvar</button>
-        </form>
-    </div>
+				<div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
+					<label for="nome" class="control-label">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="form-group  col-sm-6  sd-required" saude:classforerror="email">
+					<label for="email" class="control-label">E-mail</label>
+					<input type="text" class="form-control" id="email" th:field="*{email}"/>
+				</div>
+				
+				<div class="form-group  col-sm-3">
+					<label for="dataNascimento" class="control-label">Data de nascimento</label>
+					<input type="text" class="form-control  js-date" id="dataNascimento" 
+						th:field="*{dataNascimento}" autocomplete="off"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-sm-3" saude:classforerror="senha" th:classappend="${usuario.novo} ? sd-required">
+					<label for="senha" class="control-label">Senha</label> 
+					<input type="password" class="form-control" id="senha" th:field="*{senha}"/>
+				</div>
+				
+				<div class="form-group  col-sm-3" saude:classforerror="confirmacaoSenha">
+					<label for="confirmacaoSenha" class="control-label">Confirmação de senha</label> 
+					<input type="password" class="form-control" id="confirmacaoSenha"  th:field="*{confirmacaoSenha}"/>
+				</div>
+				
+				<div class="form-group  col-sm-3">
+					<label class="control-label">Status</label>
+					<div>
+						<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+							data-on-text="Ativo" data-off-text="Inativo" th:field="*{status}"/>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-sm-6 sd-required" saude:classforerror="grupos">
+					<label class="control-label">Grupos</label> 
+					<div>
+						<th:block th:each="grupo : ${grupos}">
+	  						<div class="checkbox  checkbox-inline"> 
+		    					<input type="checkbox" th:value="${grupo.id}" th:field="*{grupos}"/>
+		    					<label th:for="${#ids.prev('grupos')}" th:text="${grupo.nome}">Administrador</label>
+	    					</div>
+	    				</th:block>
+					</div>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>   
+   
 </section>
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+	<script>
+		$('.js-status').bootstrapSwitch();
+	</script>
+</th:block>
+
+</body>
 </html>
+

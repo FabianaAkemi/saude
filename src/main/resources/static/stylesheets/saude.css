@@ -47,6 +47,17 @@
 
 /*
 ###################
+# treta
+###################
+*/
+
+.checkbox input[type="checkbox"]:checked + input + label::after {
+    font-family: 'FontAwesome';
+    content: "\f00c"; 
+}
+
+/*
+###################
 # PÁGINAS DO SISTEMA
 ###################
 */
@@ -75,4 +86,5 @@
 	width: 200px;
 	text-align: right;
 }
+
 

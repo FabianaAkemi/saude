@@ -17,20 +17,20 @@
 
                         <ul class="aw-menu__list  aw-menu__list--sublist">
                             <li class="aw-menu__item  aw-menu__item--link is-active">
-                                <a th:href="@{saude/medico}"><span>Cadastro Médico</span></a>
+                                <a th:href="@{/medicos/novo}"><span>Cadastro Médico</span></a>
                             </li>
 
                             <li class="aw-menu__item  aw-menu__item--link">
-                                <a th:href="@{/paciente}"><span>Cadastro Paciente</span></a>
+                                <a th:href="@{/pacientes/novo}"><span>Cadastro Paciente</span></a>
                             </li>
 
 
-                            <li class="aw-menu__item  aw-menu__item--link">
-                                <a th:href="@{saude/conveniada}"><span>Cadastro Conveniada</span></a>
-                            </li>
+<!--                             <li class="aw-menu__item  aw-menu__item--link"> -->
+<!--                                 <a th:href="@{saude/conveniada}"><span>Cadastro Conveniada</span></a> -->
+<!--                             </li> -->
 
                             <li class="aw-menu__item  aw-menu__item--link">
-                                <a th:href="@{saude/usuario}"><span>Cadastro Usuário</span></a>
+                                <a th:href="@{/usuarios/novo}"><span>Cadastro Usuário</span></a>
                             </li>
 
                         </ul>
@@ -42,10 +42,8 @@
                             <i class="aw-menu__navigation-icon  fa"></i>
                         </a>
                         <ul class="aw-menu__list  aw-menu__list--sublist">
-                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/medicos}">Pesquisar Médicos</a></li>
-                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/pacientes}">Pesquisar Pacientes</a></li>
-                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/conveniadas}">Pesquisar Conveniadas</a></li>
-                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{saude/usuarios}">Pesquisar Usuários</a></li>
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/medicos}">Pesquisar Médicos</a></li>
+                            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/pacientes}">Pesquisar Pacientes</a></li>
                         </ul>
                     </li>
 

@@ -3,6 +3,7 @@ package com.tcc.saude.config.init;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.tcc.saude.config.JPAConfig;
+import com.tcc.saude.config.SecurityConfig;
 import com.tcc.saude.config.ServiceConfig;
 import com.tcc.saude.config.WebConfig;
 
@@ -10,7 +11,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { JPAConfig.class, ServiceConfig.class };
+		return new Class<?>[] { JPAConfig.class, ServiceConfig.class, SecurityConfig.class };
 	}
 
 	@Override
