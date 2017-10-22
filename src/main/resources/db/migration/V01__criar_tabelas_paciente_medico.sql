@@ -7,15 +7,15 @@ CREATE TABLE paciente (
     logradouro VARCHAR(80) NOT NULL,
     numero BIGINT(20) NOT NULL, 
     complemento VARCHAR(50), 
-    cep BIGINT(20) NOT NULL,
+    cep VARCHAR(10) NOT NULL,
     cidade_uf VARCHAR(50) NOT NULL
-    
+   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE medico (
     id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80) NOT NULL,
-    crm BIGINT(20) NOT NULL,
+    crm VARCHAR(10) NOT NULL,
    	tipo_especialista VARCHAR(50) NOT NULL,
     telefone VARCHAR(20) NOT NULL,
     email VARCHAR(20) NOT NULL    

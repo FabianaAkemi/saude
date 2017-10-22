@@ -7,10 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -26,33 +30,49 @@ public class Paciente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 
-	@NotNull
-	@Size(min = 11, max = 14)
+	@NotBlank(message = "CPF é obrigatório")
 	private String cpf;
 
-	@NotBlank
+	@NotBlank(message = "Telefone é obrigatório")
 	private String telefone;
+	
+//	@NotBlank 
+//	@Column(name = "data_nascimento")
+//	private Date dataNascimento;
 
-	@NotBlank
+	@NotBlank(message = "E-mail é obrigatório")
+	@Email(message = "E-mail inválido")
 	private String email;
 
-	@NotBlank
+	@NotBlank(message = "Logradouro é obrigatório")
+	@Size(max = 50, message = "O tamanho do logradouro deve estar entre 1 e 50")
 	private String logradouro;
 
-	@NotNull
+	@NotNull(message = "Número obrigatório")
 	private Long numero;
 
 	private String complemento;
 
-	@NotNull
-	private Long cep;
+	@NotBlank(message = "CEP é obrigatório")
+	private String cep;
 
-	@NotBlank
+	@NotBlank(message = "Cidade/Uf é obrigatório")
 	@Column(name = "cidade_uf")
 	private String cidadeUf;
+	
+	@PrePersist @PreUpdate
+	private void prePersistPreUpdate() {
+		this.cpf = this.cpf.replaceAll("\\.|-|", "");
+	}
+	
+	@PostLoad
+	private void postLoad(){
+		this.cpf = this.cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+
+	}
 
 	public String getNome() {
 		return nome;
@@ -118,11 +138,11 @@ public class Paciente implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -133,6 +153,18 @@ public class Paciente implements Serializable {
 	public void setCidadeUf(String cidadeUf) {
 		this.cidadeUf = cidadeUf;
 	}
+	
+	public String removeFormatacao(){
+		return this.cpf = this.cpf.replaceAll("\\.|-|", "");
+	}
+//	public Date getDataNascimento() {
+//		return dataNascimento;
+//	}
+//
+//	public void setDataNascimento(Date dataNascimento) {
+//		this.dataNascimento = dataNascimento;
+//	}
+	
 
 	@Override
 	public int hashCode() {

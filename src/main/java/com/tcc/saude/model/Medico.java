@@ -11,8 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -29,23 +29,24 @@ public class Medico implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 
-	@NotNull
-	@Size(min=5, max =5)
-	private Long crm;
+	@NotBlank(message = "CRM é obrigatório")
+	private String crm;
 
-	@NotNull
+	@NotNull(message = "Tipo Especialista é obrigatório")
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_especialista")
 	private TipoEspecialista tipoEspecialista;
 
-	@NotNull
+	@NotBlank(message = "Telefone é obrigatório")
 	private String telefone;
 
-	@NotNull
+	@NotBlank(message = "E-mail é obrigatório")
+	@Email(message = "E-mail é inválido")
 	private String email;
+	
 
 	public Long getId() {
 		return id;
@@ -63,11 +64,11 @@ public class Medico implements Serializable {
 		this.nome = nome;
 	}
 
-	public Long getCrm() {
+	public String getCrm() {
 		return crm;
 	}
 
-	public void setCrm(Long crm) {
+	public void setCrm(String crm) {
 		this.crm = crm;
 	}
 

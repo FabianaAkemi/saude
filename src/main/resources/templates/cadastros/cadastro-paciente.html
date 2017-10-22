@@ -2,103 +2,99 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:saude="http://tcc.saude"
 	layout:decorate="~{layout/home}">
 <head>
 <title>Cadastro do Paciente</title>
 </head>
 <body>
-	<section layout:fragment="conteudo">
+<section layout:fragment="conteudo">
 
-        <div class="page-header">
-            <div class="container-fluid">
-                <h1>
-                    Cadastro de Paciente
-                </h1>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-        
-        	<th:block th:include="fragmentos/MensagemSucesso"></th:block>
-        	
-            <form method="POST" class="form-vertical  js-form-loading" th:object="${paciente}">
-<!--             th:action="@{/saude/paciente}" -->
-				<th:block th:include="fragmentos/MensagensErro"></th:block>	
+       <div class="page-header">
+         <div class="container-fluid">
+            <div class="row">
+				<div class="col-sm-10">
+					<h1>Cadastro de Paciente</h1>
+				</div>
 			
-                <div class="row">
-                    <div class="form-group  col-sm-12">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
-                    </div>
-                </div>
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/pacientes}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
+		   </div>
+         </div>
+       </div>
 
-                <div class="row">
-                    <div class="form-group  col-sm-4">
-                        <label>Dependentes</label>
-                        <div>
-                            <div class="radio  radio-inline">
-                                <input type="radio" name="dependentes">
-                                <label>Sim</label>
-                            </div>
-                            <div class="radio  radio-inline">
-                                <input type="radio" name="dependentes">
-                                <label>Não</label>
-                            </div>
-                        </div>
-                    </div>
+       <div class="container-fluid">
+         	
+         <form method="POST" class="form-vertical  js-form-loading" th:object="${paciente}" th:action="@{/pacientes/novo}">
+		     <saude:message/>	
+				
+               <div class="row">
+                   <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
+                       <label for="nome"  class="control-label">Nome</label>
+                       <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
+                   </div>
+               </div>
 
-                    <div class="form-group  col-sm-8" >
-                        <label for="cpf">CPF</label>
-                        <input type="text" class="form-control js-cpf-number" id="cpf" name="cu" th:field="*{cpf}"/>
-                    </div>
-                </div>
+               <div class="row">
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="cpf">
+                       <label for="cpf">CPF</label>
+                       <input type="text" id="cpf" class="form-control cpf"  name="cpf" th:field="*{cpf}"/>
+                   </div>
+                   
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="telefone">
+                       <label for="telefone">Telefone</label>
+                       <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
+                   </div>
 
-                <div class="row">
-                    <div class="form-group  col-sm-4">
-                        <label for="telefone">Telefone</label>
-                        <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
-                    </div>
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="email">
+                       <label for="email">E-mail</label>
+                       <input type="email" class="form-control" id="email" th:field="*{email}"/>
+                   </div>
+               </div>
 
-                    <div class="form-group  col-sm-8">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" th:field="*{email}"/>
-                    </div>
-                </div>
+               <div class="row">
+                
+               </div>
 
-                <div class="row">
-                    <div class="form-group  col-sm-8">
-                        <label for="logradouro">Logradouro</label>
-                        <input type="text" class="form-control" id="logradouro" th:field="*{logradouro}"/>
-                    </div>
+               <div class="row">
+                   <div class="form-group  col-sm-8 sd-required" saude:classforerror="logradouro">
+                       <label for="logradouro">Logradouro</label>
+                       <input type="text" class="form-control" id="logradouro" th:field="*{logradouro}"/>
+                   </div>
 
-                    <div class="form-group  col-sm-2">
-                        <label for="numero">Número</label>
-                        <input type="number" class="form-control" id="numero" th:field="*{numero}" />
-                    </div>
+                   <div class="form-group  col-sm-2 sd-required" saude:classforerror="numero">
+                       <label for="numero">Número</label>
+                       <input type="number" class="form-control" id="numero" th:field="*{numero}" />
+                   </div>
 
-                    <div class="form-group  col-sm-2">
-                        <label for="complemento">Complemento</label>
-                        <input type="text" class="form-control" id="complemento" th:field="*{complemento}"/>
-                    </div>
-                </div>
+                   <div class="form-group  col-sm-2" >
+                       <label for="complemento">Complemento</label>
+                       <input type="text" class="form-control" id="complemento" th:field="*{complemento}"/>
+                   </div>
+               </div>
 
-                <div class="row">
-                    <div class="form-group  col-sm-6">
-                        <label for="cep">CEP</label>
-                        <input type="text" class="form-control" id="cep" th:field="*{cep}"/>
-                    </div>
+               <div class="row">
+                   <div class="form-group  col-sm-6 sd-required" saude:classforerror="cep">
+                       <label for="cep">CEP</label>
+                       <input type="text" class="form-control cep" id="cep" th:field="*{cep}"/>
+                   </div>
 
-                    <div class="form-group  col-sm-6">
-                        <label for="cidadeUf">Cidade/UF</label>
-                        <input type="text" class="form-control" id="cidadeUf" th:field="*{cidadeUf}"/>
-                    </div>
-                </div>
+                   <div class="form-group  col-sm-6 sd-required" saude:classforerror="cidadeUf">
+                       <label for="cidadeUf">Cidade/UF</label>
+                       <input type="text" class="form-control" id="cidadeUf" th:field="*{cidadeUf}"/>
+                   </div>
+               </div>
 
-                <button type="submit" class="btn  btn-primary">Salvar</button>
-            </form>
-        </div>
+               <button type="submit" class="btn  btn-primary">Salvar</button>
+           </form>
+       </div>
 
 
-    </section>
+ </section>
 </body>
 </html>

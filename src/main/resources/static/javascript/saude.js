@@ -33,3 +33,10 @@ $(function() {
     maskPhoneNumber.enable();
 
 });
+
+/**mascaras */
+$('.cpf').mask('000.000.000-00');
+
+$('.cep').mask('00.000-000');
+
+$('.crm').mask('AA 00.000');

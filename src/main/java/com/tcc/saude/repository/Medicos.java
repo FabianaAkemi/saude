@@ -6,11 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.tcc.saude.model.Medico;
+import com.tcc.saude.repository.helper.medico.MedicosQueries;
+
 
 @Repository
-public interface Medicos extends JpaRepository<Medico, Long>{
+public interface Medicos extends JpaRepository<Medico, Long>, MedicosQueries {
+
+	Optional<Medico> findByCrm(String crm);
 	
-	public Optional<Medico> findById(Long id);
+
 
 
 }
