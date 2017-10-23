@@ -4,6 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
@@ -19,8 +20,10 @@ import com.tcc.saude.model.Paciente;
 import com.tcc.saude.repository.Pacientes;
 
 @Configuration
+@ComponentScan(basePackageClasses = Pacientes.class)
 @EnableJpaRepositories(basePackageClasses = Pacientes.class, enableDefaultTransactions = false)
 @EnableTransactionManagement
+@ComponentScan(basePackageClasses = Pacientes.class)
 public class JPAConfig {
 
 	@Bean

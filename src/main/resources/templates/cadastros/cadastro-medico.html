@@ -3,62 +3,71 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:saude="http://tcc.saude"
       layout:decorate="~{layout/home}">
 <head>
     <title>Cadastro de Médico</title>
 </head>
+
 <body>
     <section layout:fragment="conteudo">
 
-        <div class="page-header">
-            <div class="container-fluid">
-                <h1>
-                    Cadastro de Médico
-                </h1>
-            </div>
-        </div>
+     <div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Cadastro Medico</h1>
+				</div>
+
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/medicos}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
 
         <div class="container-fluid">
-        
-            <th:block th:include="fragmentos/MensagemSucesso"></th:block>
-        
-            <form method="POST" class="form-vertical  js-form-loading" th:object="${medico}" th:action="@{/saude/medico}">
-			   <th:block th:include="fragmentos/MensagensErro"></th:block>	
-				          
-               <input type="hidden" th:field="*{id}"/>
+
+            <form method="POST" class="form-vertical  js-form-loading" th:object="${medico}" th:action="@{/medicos/novo}">
+	        	<saude:message/>
 
                 <div class="row">
-                    <div class="form-group  col-sm-12">
-                        <label for="nome">Nome</label>
+                    <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
+                        <label for="nome" class="control-label">Nome</label>
                         <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
                     </div>
                 </div>
 
                 <div class="row">
 
-                    <div class="form-group  col-sm-6" >
-                        <label for="crm">CRM</label>
-                        <input class="form-control" id="crm" type="text" th:field="*{crm}"/>
+                    <div class="form-group  col-sm-6 sd-required" saude:classforerror="crm">
+                        <label for="crm" class="control-label">CRM</label>
+                        <input type="text" class="form-control crm" id="crm"  th:field="*{crm}"/>
                     </div>
 
-                    <div class="form-group  col-sm-6">
-                        <label for="especialista">Especialidade</label>
+                    <div class="form-group  col-sm-6 sd-required" saude:classforerror="tipoEspecialista">
+                        <label for="especialidade"  class="control-label">Especialidade</label>
                         <select id="especialidade" class="form-control" th:field="*{tipoEspecialista}">
-                            <option value="">Selecione </option>
-                            <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}" th:text="#{|tipoEsp.${tipoEspecialista}|}"></option>
+                            <option value="">Selecione</option>
+                            <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}"
+                            	th:text="${tipoEspecialista.tipo}">teste</option>
                         </select>
                     </div>
 
                 </div>
 
                 <div class="row">
-                    <div class="form-group  col-sm-4">
-                        <label for="telefone">Telefone</label>
+                    <div class="form-group  col-sm-4 sd-required" saude:classforerror="telefone">
+                        <label for="telefone"  class="control-label">Telefone</label>
                         <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
                     </div>
 
-                    <div class="form-group  col-sm-8">
-                        <label for="email">E-mail</label>
+                    <div class="form-group  col-sm-8 sd-required" saude:classforerror="email">
+                        <label for="email"  class="control-label">E-mail</label>
                         <input type="email" class="form-control" id="email" th:field="*{email}"/>
                     </div>
                 </div>
@@ -70,5 +79,6 @@
             </form>
         </div>
     </section>
+
 </body>
 </html>
