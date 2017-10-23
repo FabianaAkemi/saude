@@ -1,17 +1,24 @@
 package com.tcc.saude.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tcc.saude.controller.page.PageWrapper;
 import com.tcc.saude.model.Usuario;
 import com.tcc.saude.repository.Grupos;
+import com.tcc.saude.repository.Usuarios;
+import com.tcc.saude.repository.filter.UsuarioFilter;
 import com.tcc.saude.service.CadastroUsuarioService;
 import com.tcc.saude.service.Exception.EmailUsuarioCadastradoException;
 import com.tcc.saude.service.Exception.SenhaObrigatoriaException;
@@ -22,6 +29,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
+	
+	@Autowired
+	private Usuarios usuarios;
 	
 	@Autowired
 	private Grupos grupos;
@@ -51,17 +61,20 @@ public class UsuarioController {
 		attributes.addFlashAttribute("mensagem", "Usuário, salvo com sucesso!");
 		return new ModelAndView("redirect:/usuarios/novo");
 	}
-//	
-//    @GetMapping
-//	public ModelAndView pesquisar(PacienteFilter pacienteFilter, BindingResult result
-//			, @PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
-//		ModelAndView mv = new ModelAndView("pesquisas/pesquisa-paciente");
-//		
-//		PageWrapper<Paciente> paginaWrapper = new PageWrapper<>(pacientes.filtrar(pacienteFilter, pageable)
-//				, httpServletRequest);
-//		
-//		mv.addObject("pagina", paginaWrapper);
-//		return mv;
-//	}
+	
+	
+	@GetMapping
+	public ModelAndView pesquisar(UsuarioFilter usuarioFilter
+			, @PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
+		
+		ModelAndView mv = new ModelAndView("pesquisas/pesquisa-usuario");
+		mv.addObject("grupos", grupos.findAll());
+		
+		PageWrapper<Usuario> paginaWrapper = new PageWrapper<>(usuarios.filtrar(usuarioFilter, pageable)
+				, httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
+		return mv;
+	}
+	
 
 }
