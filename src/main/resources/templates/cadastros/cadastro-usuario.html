@@ -18,11 +18,19 @@
 			<h1>
 				Cadastro de usuário
 			</h1>
+			
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn  btn-default" th:href="@{/usuarios}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	
 	<div class="container-fluid">
-		<form method="POST" th:object="${usuario}">
+		<form method="POST" th:object="${usuario}" th:action="@{/usuarios/novo}">
 			<saude:message/>
 			
 			<div class="row">

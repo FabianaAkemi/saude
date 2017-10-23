@@ -51,4 +51,17 @@ public class UsuarioController {
 		attributes.addFlashAttribute("mensagem", "Usuário, salvo com sucesso!");
 		return new ModelAndView("redirect:/usuarios/novo");
 	}
+//	
+//    @GetMapping
+//	public ModelAndView pesquisar(PacienteFilter pacienteFilter, BindingResult result
+//			, @PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
+//		ModelAndView mv = new ModelAndView("pesquisas/pesquisa-paciente");
+//		
+//		PageWrapper<Paciente> paginaWrapper = new PageWrapper<>(pacientes.filtrar(pacienteFilter, pageable)
+//				, httpServletRequest);
+//		
+//		mv.addObject("pagina", paginaWrapper);
+//		return mv;
+//	}
+
 }

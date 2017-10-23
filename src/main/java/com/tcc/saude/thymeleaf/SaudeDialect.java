@@ -8,6 +8,7 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
 import com.tcc.saude.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
+import com.tcc.saude.thymeleaf.processor.MenuAttributeTagProcessor;
 import com.tcc.saude.thymeleaf.processor.MessageElementProcessor;
 import com.tcc.saude.thymeleaf.processor.OrderElementTagProcessor;
 import com.tcc.saude.thymeleaf.processor.PaginationElementTagProcessor;
@@ -26,7 +27,7 @@ public class SaudeDialect extends AbstractProcessorDialect{
 		processadores.add(new MessageElementProcessor(dialectPrefix));
 		processadores.add(new OrderElementTagProcessor(dialectPrefix));
 		processadores.add(new PaginationElementTagProcessor(dialectPrefix));
-
+		processadores.add(new MenuAttributeTagProcessor(dialectPrefix));
 
 		return processadores;
 	}
