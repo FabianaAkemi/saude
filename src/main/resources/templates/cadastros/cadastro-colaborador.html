@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:saude="http://tcc.saude"
+	layout:decorate="~{layout/home}">
+<head>
+<title>Cadastro de Colaborador</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
+
+</head>
+<body>
+<section layout:fragment="conteudo">
+
+       <div class="page-header">
+         <div class="container-fluid">
+            <div class="row">
+				<div class="col-sm-10">
+					<h1>Cadastro de Colaborador</h1>
+				</div>
+			
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/colaboradores}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
+		   </div>
+         </div>
+       </div>
+
+       <div class="container-fluid">
+         	
+         <form method="POST" class="form-vertical  js-form-loading" th:object="${colaborador}" th:action="@{/colaboradores/novo}">
+		     <saude:message/>	
+				
+               <div class="row">
+                   <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
+                       <label for="nome"  class="control-label">Nome</label>
+                       <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
+                   </div>
+               </div>
+
+               <div class="row">
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="cpf">
+                       <label for="cpf" class="control-label">CPF</label>
+                       <input type="text" id="cpf" class="form-control cpf"  name="cpf" th:field="*{cpf}"/>
+                   </div>
+                   
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="rg">
+                       <label for="rg" class="control-label">RG</label>
+                       <input type="text" id="rg" class="form-control rg"  name="rg" th:field="*{rg}"/>
+                   </div>
+
+              		<div class="form-group  col-sm-3 sd-required">
+						<label for="dataNascimento" class="control-label">Data de nascimento</label>
+						<input type="text" class="form-control  js-date" id="dataNascimento" 
+							th:field="*{dataNascimento}" autocomplete="off"/>
+					</div>
+               </div>
+
+               <div class="row">
+                
+               </div>
+
+               <div class="row">
+                   <div class="form-group  col-sm-4 sd-required" saude:classforerror="telefone">
+                        <label for="telefone"  class="control-label">Telefone</label>
+                        <input type="text" class="form-control js-phone-number" id="telefone" th:field="*{telefone}"/>
+                    </div>
+
+                   
+                     <div class="form-group  col-sm-6 sd-required" saude:classforerror="atividadeExercida">
+                     	<label for="atividade" class="control-label">Atividade Exercida</label>                        
+                        <select id="atividade" class="form-control" th:field="*{atividadeExercida}">
+                            <option value="">Selecione</option>
+                            <option th:each="atividadeExercida : ${atividades}" th:value="${atividadeExercida}" 
+                            	th:text="${atividadeExercida.atividade}">teste</option>
+                        </select>
+                    </div>
+                   
+               </div>
+
+           
+
+               <button type="submit" class="btn  btn-primary">Salvar</button>
+           </form>
+       </div>
+
+
+ </section>
+</body>
+</html>

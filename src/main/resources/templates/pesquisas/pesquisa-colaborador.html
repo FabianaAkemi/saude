@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:data="http://www.thymeleaf.org/extras/data-attribute"
+      xmlns:saude="http://tcc.saude" 
+      layout:decorate="~{layout/home}">
+<head>
+    <title>Pesquisa de Colaboradores</title>
+</head>
+<body>
+<section layout:fragment="conteudo">
+
+	  <div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Pesquisa de Colaboradores</h1>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/colaboradores/novo}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs hidden-sm">Novo Colaborador</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	  
+	  <div class="container-fluid">
+       		 
+        <form method="GET" th:object="${colaboradorFilter}"> 
+			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label class="control-label" for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}" />
+				</div>
+				
+				<div class="form-group  col-sm-3" >
+					<label class="control-label" for="crm">RG</label>
+					<input type="text" class="form-control" id="rg" th:field="*{rg}"/>
+				</div>
+				
+				<div class="form-group  col-sm-3 " saude:classforerror="atividadeExercida">
+                     	<label for="atividade">Atividade Exercida</label>                        
+                        <select id="atividade" class="form-control" th:field="*{atividadeExercida}">
+                            <option value="">Selecione</option>
+                            <option th:each="atividadeExercida : ${atividades}" th:value="${atividadeExercida}" 
+                            	th:text="${atividadeExercida.atividade}"></option>
+                        </select>
+                </div>			
+			</div>			
+						
+			<button type="submit" class="btn  btn-primary">Pesquisar</button>
+		</form>
+		
+		<div class="table-responsive  bw-tabela-simples">
+			<table class="table  table-hover">
+				<thead>
+					<tr>
+						<th class="table-pacientes-col-nome">
+							<saude:order page="${pagina}" field="nome" text="Nome"/>
+						</th>
+						<th class="table-pacientes-col-cpf">RG</th>
+						<th class="table-pacientes-col-telefone">Atividade Exercida</th>
+						<th class="table-pacientes-col-cidade-estado">Telefone</th>
+						<th class="table-col-acoes"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="colaborador : ${pagina.conteudo}">
+						<td th:text="${colaborador.nome}"></td>
+						<td class="text-right" th:text="${colaborador.rg}"></td>
+						<td class="text-right" th:text="${colaborador.atividadeExercida}"></td>
+						<td class="text-right" th:text="${colaborador.telefone}"></td>
+						<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Editar"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn  btn-link  btn-xs" title="Excluir">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+					</tr>
+					<tr th:if="${pagina.vazia}">
+						<td colspan="5">Nenhum Colaborador encontrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<saude:pagination page="${pagina}"/>
+		
+	</div>
+
+
+        
+</section>
+</body>
+</html>

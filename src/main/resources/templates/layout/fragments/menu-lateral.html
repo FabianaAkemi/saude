@@ -30,6 +30,10 @@
 <!--                             <li class="aw-menu__item  aw-menu__item--link"> -->
 <!--                                 <a th:href="@{saude/conveniada}"><span>Cadastro Conveniada</span></a> -->
 <!--                             </li> -->
+							<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/colaboradores/novo}">
+                                <a th:href="@{/colaboradores/novo}"><span>Cadastro Colaboradores</span></a>
+                            </li>
+                            
                             <li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/usuarios/novo}">
                                 <a th:href="@{/usuarios/novo}"><span>Cadastro Usuário</span></a>
                             </li>
@@ -51,8 +55,12 @@
                             	<a th:href="@{/pacientes}">Pesquisar Pacientes</a>
                            	</li>
                            	
+                           	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/colaboradores}">
+                            	<a th:href="@{/colaboradores}">Pesquisar Colaboradores</a>
+                           	</li>
+                           	
                            	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/usuarios}">
-                            	<a th:href="@{/usuarios}">Pesquisar Pacientes</a>
+                            	<a th:href="@{/usuarios}">Pesquisar Usuários</a>
                            	</li>
                         </ul>
                     </li>
