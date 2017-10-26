@@ -1,447 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:saude="http://tcc.saude"
 	layout:decorate="~{layout/home}">
 <head>
-<title>Cadastro do Paciente</title>
+<title>Cadastro Triagem</title>
 </head>
-<body>
-	<section layout:fragment="conteudo">
+<section layout:fragment="conteudo">
 
-        <div class="page-header">
-            <div class="container-fluid">
-                <h1>
-                    Cadastro da Triagem
-                </h1>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-        
-<!--         	<th:block th:include="fragmentos/MensagemSucesso"></th:block> -->
-        	
-            <form method="POST" class="form-vertical  js-form-loading" >
-<!--             th:object="${triagem}" -->
-				
-<!-- 				<th:block th:include="fragmentos/MensagensErro"></th:block>	 -->
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+			<div class="col-sm-10">
+				<h1>Cadastro de Triagem</h1>
+			</div>
 			
-                <div class="row">
-                    <div class="form-group  col-sm-12">
-                        <label for="paciente">Paciente</label>
-                        <input id="paciente" type="text" class="form-control" id="paciente" />
-<!--                         th:field="*{}" -->
-                    </div>
-                </div>
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn  btn-default" th:href="@{/triagens}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+					</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+       
+       
+	<div class="container-fluid">         	
+		<form method="POST"  th:action="@{/triagens/novo}">
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label class="control-label" for="paciente">Paciente</label>
+					<div class="input-group">
+						<input id="paciente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Paciente"/>
+						<input id="idPaciente" type="hidden"/>
+						<span class="input-group-btn">
+						  <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaPacientes">
+						  	<i class="glyphicon  glyphicon-search"></i>
+						  </button>
+						</span>
+				    </div>
+				</div>                	
+			</div>
                 
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Dor de Cabeça:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Articulação:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Dor no Corpo:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				</div>	
-				
-								
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Calafrio:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Sonolência:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Problema Renal:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				</div>	
-				
-								
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Motor:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Hepatite:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Diabetes:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				</div>	
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Hipertensão:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-					
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Deficiência:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Febre:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Temperatura Febre:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>						
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Problema Respiratório:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>			  
-			  
-			  	<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Problema Neurológico:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Problema Cardíaco:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Doença Sexualmente Transmissível (DST):</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Câncer:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
+			<div class="row">
+           		<div class="form-group  col-sm-12">
+					<label class="control-label" for="medico">Médico</label>
+					<div class="input-group">
+      					<input id="medico" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Médico"/>
+						<input id="idMedico" type="hidden"/>      					
+      					<span class="input-group-btn">
+					        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaMedicos">
+					        	<i class="glyphicon  glyphicon-search"></i>
+					        </button>
+    					</span>
+   					</div>    
+				</div>                	
+			</div>
+                
+                
+  
+                <button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>
 
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Alergia:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label for="dorCabeca" class="control-label">Uso de Medicamentos:</label>
-						<div>
-							<div class="col-sm-6 form-check form-check-inline">
-								<label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							    Sim
-							  	</label>						  
-							</div>
-							<div class="col-sm-6 form-check form-check-inline">
-							  <label class="form-check-label">
-							    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Não
-							  </label>
-							</div>
-						</div>
-					</div>	
-				
-				
-					<div class="col-sm-8  form-group">
-						<label for="estoque" class="control-label">Descrição:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-12  form-group">
-						<label for="estoque" class="control-label">Outros:</label>
-						<input id="estoque" type="text" class="form-control  js-plain"/>
-					</div>
-				</div>
-                <button type="submit" class="btn  btn-primary" id="salvar">Salvar</button>
-            </form>
-        </div>
-
-
-    </section>
-</body>
+	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-pacientes :: pesquisaRapidaPacientes"></th:block>
+	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-medicos :: pesquisaRapidaMedicos"></th:block>
+</section>
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/javascripts/paciente-pesquisa-rapida.js}"></script>
+	<script th:src="@{/javascripts/medico-pesquisa-rapida.js}"></script>
+	
+</th:block>
 </html>
+
+

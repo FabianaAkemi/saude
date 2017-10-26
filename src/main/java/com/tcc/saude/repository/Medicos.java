@@ -1,5 +1,6 @@
 package com.tcc.saude.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,8 +14,8 @@ import com.tcc.saude.repository.helper.medico.MedicosQueries;
 public interface Medicos extends JpaRepository<Medico, Long>, MedicosQueries {
 
 	Optional<Medico> findByCrm(String crm);
-	
 
+	List<Medico> findByNomeStartingWithIgnoreCase(String nome);
 
 
 }
