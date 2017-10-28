@@ -9,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Sistema Geral de Saúde</title>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/teste2.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/teste.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
+    
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/teste2.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/teste.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
+	
+    <link rel="shortcut icon" th:href="@{/images/favicon.png}"/>
 
 </head>
 
@@ -21,6 +23,7 @@
 
         <form th:action="@{/login}" method="POST">
             <div class="aw-simple-panel">
+         		<img alt="SDS" style="height: 200px;" th:src="@{/images/Logo2l.png}"/>            	
 
                 <div class="aw-simple-panel__message">
                     Por favor, faça o login.
