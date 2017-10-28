@@ -9,11 +9,11 @@
 
             <div class="navbar-header">
                 <a class="navbar-brand  hidden-xs" th:href="@{saude}">
-                    <img alt="S.G.S" src="#"/>
+                    <img alt="S.G.S" class="sds-logo" th:src="@{/images/LogoSmallIce.png}"/>
                 </a>
 
                 <ul class="nav  navbar-nav">
-                    <li>
+                    <li>                
                         <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
                     </li>
                 </ul>
@@ -22,7 +22,7 @@
            
 		   <ul class="nav navbar-nav  navbar-right">
 		   		<li>
-    		<p class="navbar-text" th:text="${#authentication.principal.usuario.nome}">Usuário</p>
+    		<p class="navbar-text usuario-logado" th:text="${#authentication.principal.usuario.nome}"><b>Usuário</b></p>
 		   		</li>		   			
 		   
 		   		<li>
