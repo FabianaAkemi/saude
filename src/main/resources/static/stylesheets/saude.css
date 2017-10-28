@@ -84,7 +84,36 @@
 
 .table-pacientes-col-cidade-estado {
 	width: 200px;
-	text-align: right;
+	text-align: right;	
 }
+
+.sds-logo {
+    width: 110px;
+    height: 28px;
+	position: relative;
+	overflow-y: auto;
+}
+
+.usuario-logado {
+	font-weight: bolder
+}
+
+/* Colunas - Pesquisa de usuários */
+.table-triagem-col {
+	width: 30px;
+	text-align: center;
+}
+
+.sd-margin {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  font-weight: bold;	
+}
+
+.sd-triagem-etapa {
+  font-weight: bold;
+  text-align: center;	
+}
+
 
 
