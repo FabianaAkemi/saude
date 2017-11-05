@@ -32,7 +32,7 @@
 		<form method="POST"  th:action="@{/triagens/novo}">
 			<div class="row">
 				<div class="form-group  col-sm-12">
-					<label class="control-label" for="paciente">Paciente</label>
+					<label class="control-label" for="paciente">Paciente*</label>
 					<div class="input-group">
 						<input id="paciente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Paciente"/>
 						<input id="idPaciente" type="hidden"/>
@@ -47,7 +47,7 @@
                 
 			<div class="row">
            		<div class="form-group  col-sm-12">
-					<label class="control-label" for="medico">Médico</label>
+					<label class="control-label" for="medico">Médico*</label>
 					<div class="input-group">
       					<input id="medico" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Médico"/>
 						<input id="idMedico" type="hidden"/>      					
@@ -85,33 +85,34 @@
 									<tr>
 										<td class="sd-triagem-etapa ">1</td>
 										<td>											
-											<input type="checkbox"> <label>Sonolência excessiva</label>
+											<input type="checkbox"> <label>Calafrios</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">2</td>
 										<td>											
-											<input type="checkbox"> <label>Dores de cabeça</label>
+											<input type="checkbox"> <label>Dor nas Articulações</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa ">3</td>
 										<td>											
-											<input type="checkbox"> <label>Dores nas articulações</label>
+											<input type="checkbox"> <label>Diabetes</label>
+										</td>
+									</tr>	
+									<tr>
+										<td class="sd-triagem-etapa ">4</td>
+										<td>											
+											<input type="checkbox"> <label>Dor na Cabeça</label>
 										</td>
 									</tr>
 									<tr>
-										<td class="sd-triagem-etapa">4</td>
+										<td class="sd-triagem-etapa">5</td>
 										<td>											
-											<input type="checkbox"> <label>Calafrios pelo corpo</label>
+											<input type="checkbox"> <label>Dor no Corpo</label>
 										</td>
 									</tr>
-									<tr>
-										<td class="sd-triagem-etapa ">5</td>
-										<td>											
-											<input type="checkbox"> <label>Dores Renais</label>
-										</td>
-									</tr>																						
+																														
 								</tbody>
 							</table>  
 						</div>
@@ -128,31 +129,25 @@
 									<tr>
 										<td class="sd-triagem-etapa ">6</td>
 										<td>											
-											<input type="checkbox"> <label>Problema com cordenação motora</label>
+											<input type="checkbox"> <label>Dor Renal</label>
 										</td>
 									</tr>					
 									<tr>
 										<td class="sd-triagem-etapa">7</td>
 										<td>											
-											<input type="checkbox"> <label>Possui hepatite</label>
+											<input type="checkbox"> <label>Hepatite</label>
 										</td>
 									</tr>
 									<tr>
-										<td class="sd-triagem-etapa ">8</td>
+										<td class="sd-triagem-etapa">8</td>
 										<td>											
-											<input type="checkbox"> <label>Possui diabetes</label>
+											<input type="checkbox"> <label>Hipertensão</label>
 										</td>
 									</tr>
 									<tr>
-										<td class="sd-triagem-etapa ">9</td>
+										<td class="sd-triagem-etapa">9</td>
 										<td>											
-											<input type="checkbox"> <label>Hipertenso</label>
-										</td>
-									</tr>
-									<tr>
-										<td class="sd-triagem-etapa ">10</td>
-										<td>											
-											<input type="checkbox"> <label>Possui deficiência</label>
+											<input type="checkbox"> <label>Sonolência Excessiva</label>
 										</td>
 									</tr>											
 								</tbody>
@@ -180,7 +175,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Febre</label>
+											<label>Alergia</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -190,7 +185,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Problemas Respiratórios</label>
+											<label>Câncer</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -200,7 +195,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Problemas cardíacos</label>
+											<label>Deficiência</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -210,7 +205,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Alguma doença sexualmente transmissível</label>
+											<label>Doença Sexualmente Transmissível</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -220,7 +215,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Histórico de Cancêr</label>
+											<label>Febre</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -230,7 +225,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Possui alergia</label>
+											<label>Pressão</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -240,7 +235,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Faz uso de medicamentos</label>
+											<label>Problemas Cardíacos</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>
@@ -250,7 +245,37 @@
 									<td>
 										<div class="">
 											<input type="checkbox"> 
-											<label>Algum outro sintoma</label>
+											<label>Problemas Neurológicos</label>
+										</div>
+									</td>
+									<td><input type="text" class="form-control"></td>
+								</tr>
+								<tr>
+									<td class="sd-margin ">9</td>
+									<td>
+										<div class="">
+											<input type="checkbox"> 
+											<label>Problemas Respiratórios</label>
+										</div>
+									</td>
+									<td><input type="text" class="form-control"></td>
+								</tr>
+								<tr>
+									<td class="sd-margin ">10</td>
+									<td>
+										<div class="">
+											<input type="checkbox"> 
+											<label>Faz uso de algum Medicamento</label>
+										</div>
+									</td>
+									<td><input type="text" class="form-control"></td>
+								</tr>
+								<tr>
+									<td class="sd-margin ">11</td>
+									<td>
+										<div class="">
+											<input type="checkbox"> 
+											<label>Outros Sintomas</label>
 										</div>
 									</td>
 									<td><input type="text" class="form-control"></td>

@@ -35,7 +35,7 @@ public class Medico implements Serializable {
 	@NotBlank(message = "CRM é obrigatório")
 	private String crm;
 
-	@NotNull(message = "Tipo Especialista é obrigatório")
+	@NotNull(message = "Especialidade é obrigatório")
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_especialista")
 	private TipoEspecialista tipoEspecialista;
