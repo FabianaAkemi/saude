@@ -1,0 +1,43 @@
+CREATE TABLE triagem (
+    id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    paciente_id BIGINT(20) NOT NULL,
+	usuario_id BIGINT(20) NOT NULL,
+
+	articulacao BOOLEAN DEFAULT false NOT NULL,
+	calafrio   BOOLEAN DEFAULT false NOT NULL,
+    diabetes BOOLEAN DEFAULT false NOT NULL,
+    dor_cabeca BOOLEAN DEFAULT false NOT NULL,
+    dor_corpo  BOOLEAN DEFAULT false NOT NULL,
+    renal BOOLEAN DEFAULT false NOT NULL,
+    hepatite BOOLEAN DEFAULT false NOT NULL,
+    hipertensao BOOLEAN DEFAULT false NOT NULL,
+    sonolencia   BOOLEAN DEFAULT false NOT NULL,
+
+  	alergia BOOLEAN DEFAULT false NOT NULL,
+    alergia_ex VARCHAR(50),
+ 	cancer BOOLEAN DEFAULT false NOT NULL,
+    cancer_ex VARCHAR(50),
+    deficiencia BOOLEAN DEFAULT false NOT NULL,
+   	deficiencia_ex VARCHAR(50),
+    dst BOOLEAN DEFAULT false NOT NULL,
+    dst_ex VARCHAR(50), 
+    febre  BOOLEAN DEFAULT false NOT NULL,
+    temperatura_febre VARCHAR(30), 
+    pressao BOOLEAN DEFAULT false NOT NULL,
+    pressao_ex VARCHAR(30), 
+    problema_cardiaco BOOLEAN DEFAULT false NOT NULL,
+    problema_cardiaco_ex VARCHAR(50),
+    problema_neurologico BOOLEAN DEFAULT false NOT NULL,
+    problema_neurologico_ex VARCHAR(50),
+    problema_respiratorio BOOLEAN DEFAULT false NOT NULL,
+    problema_respiratorio_ex VARCHAR(50),
+ 	medicacao BOOLEAN DEFAULT false NOT NULL,
+    medicacao_ex VARCHAR(50),
+    outros BOOLEAN DEFAULT false NOT NULL,
+    outros_ex VARCHAR(50), 
+
+    data_criacao DATETIME NOT NULL,
+    FOREIGN KEY (paciente_id) REFERENCES paciente(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;	
