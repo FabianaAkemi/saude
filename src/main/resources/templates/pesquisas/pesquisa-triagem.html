@@ -23,14 +23,31 @@
 	</div>
 	
 	<div class="container-fluid">
-		<form method="GET" th:object="${triagensFilter}" th:action="@{/triagens}">
+		<form method="GET" th:object="${triagemFilter}" th:action="@{/triagens}">
 			<div class="row">
 				<div class="form-group  col-sm-6">
 					<label class="control-label" for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{namePaciente}"/>
+				</div>
+				<div class="form-group  col-sm-6">
+					<label for="cpf" class="control-label">CPF</label>
+					<input type="text" class="form-control cpf" id="cpf" th:field="*{cpfPaciente}"/>
 				</div>
 			</div>
 			
+			
+			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label for="dataCriacaoInicial">Data de criação</label>
+					<div class="form-inline">
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" id="dataCriacaoInicial" 
+							th:field="*{desde}" autocomplete="off"/>
+						<label for="dataCriacaoFinal" class="aw-form-label-between">até</label>
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" id="dataCriacaoInicial" 
+							th:field="*{ate}" autocomplete="off"/>
+					</div>
+				</div>
+			</div>
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
 		</form>
 
@@ -38,20 +55,32 @@
         	<table class="table  table-hover">
 	            <thead>
 	            	<tr>
-      		            <th>Paciente</th>
-	                	<th>Médico</th>
-	                	<th>Data</th>
-	                 	<th class="table-col-acoes"></th>
+	                	<th>
+	                		<saude:order page="${pagina}" field="p.nome" text="Paciente"/>
+	                	</th>
+	                	<th> CPF</th>
+	                	<th>Data de criação</th>	                	
+	                	<th>Usuário</th>
+						<th class="table-col-acoes"></th>
+
 					</tr>
 				</thead>
 			
 	            <tbody>
 					<tr th:each="triagem : ${pagina.conteudo}">
-					
+						<td th:text="${triagem.paciente.nome}"></td>
+						<td th:text="${triagem.paciente.cpf}"></td>
+						<td th:text="${{triagem.dataCriacao}}"></td>
+						<td th:text="${triagem.usuario.nome}"></td>
+	                 	<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Informacao"> 
+								<i class="glyphicon glyphicon-option-horizontal"></i>
+							</a>
+						</td>
 	                </tr>
 	                
 	                <tr th:if="${pagina.vazia}">
-	                	<td colspan="4">Nenhum triagem encontrada</td>
+	                	<td colspan="4">Nenhuma Triagem encontrada</td>
 	                </tr>
 	             </tbody>
          	</table>
