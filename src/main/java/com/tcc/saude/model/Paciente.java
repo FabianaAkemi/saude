@@ -59,7 +59,7 @@ public class Paciente implements Serializable {
 	@NotBlank(message = "CEP é obrigatório")
 	private String cep;
 
-	@NotBlank(message = "Cidade/Uf é obrigatório")
+	@NotBlank(message = "Cidade/UF é obrigatório")
 	@Column(name = "cidade_uf")
 	private String cidadeUf;
 	

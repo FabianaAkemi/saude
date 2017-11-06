@@ -65,7 +65,7 @@ public class MedicoController {
 			return novo(medico);
 		}
 
-		attributes.addFlashAttribute("mensagem", "Medico, salvo com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Médico salvo com sucesso!");
 		return new ModelAndView("redirect:/medicos/novo");
 	}
 	

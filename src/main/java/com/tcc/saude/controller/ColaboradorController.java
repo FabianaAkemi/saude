@@ -57,7 +57,7 @@ public class ColaboradorController {
 			return novo(colaborador);
 		}
 
-		attributes.addFlashAttribute("mensagem", "Colaborador, salvo com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Colaborador salvo com sucesso!");
 		return new ModelAndView("redirect:/colaboradores/novo");
 	}
 	

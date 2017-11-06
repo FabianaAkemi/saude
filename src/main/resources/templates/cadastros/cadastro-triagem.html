@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:saude="http://tcc.saude"
 	layout:decorate="~{layout/home}"
 	xmlns:data="http://www.thymeleaf.org/extras/data">
-	
+
 <head>
 <title>Cadastro Triagem</title>
 </head>
@@ -23,10 +23,10 @@
 	</div>
        
        
-	<div class="container-fluid">    
+	<div class="container-fluid">
 	        <form method="POST" th:action="@{/triagens/novo}" th:object="${triagem}">
-		     <saude:message/>	
-		     
+		     <saude:message/>
+
 			<div class="row">
 				<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente">
 					<label class="control-label" for="paciente">Paciente</label>
@@ -81,7 +81,7 @@
 										<td>											
 											<input type="checkbox" id="diabetes" th:field="*{diabetes}"/> <label>Diabetes</label>
 										</td>
-									</tr>	
+									</tr>
 									<tr>
 										<td class="sd-triagem-etapa ">4</td>
 										<td>											
@@ -94,7 +94,7 @@
 											<input type="checkbox" id="dorCorpo" th:field="*{dorCorpo}"/><label>Dor no Corpo</label>
 										</td>
 									</tr>
-																														
+
 								</tbody>
 							</table>  
 						</div>
@@ -127,7 +127,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="sd-triagem-etapa">9</td>
+										<td class="sd-triagem-etapa ">9</td>
 										<td>											
 											<input type="checkbox" id="sonolencia" th:field="*{sonolencia}"/> <label>Sonolência Excessiva</label>
 										</td>
@@ -157,7 +157,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="alergia" th:field="*{alergia}"
-											 onclick="document.getElementById('alergiaEx').disabled = !this.checked;"/> 
+											 onclick="document.getElementById('alergiaEx').disabled = !this.checked;"/>
 											<label>Alergia</label>
 										</div>
 									</td>
@@ -168,7 +168,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="cancer" th:field="*{cancer}"
-											 onclick="document.getElementById('cancerEx').disabled = !this.checked;"/> 
+											 onclick="document.getElementById('cancerEx').disabled = !this.checked;"/>
 											<label>Câncer</label>
 										</div>
 									</td>
@@ -179,7 +179,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="deficiencia" th:field="*{deficiencia}"
-											 onclick="document.getElementById('deficienciaEx').disabled = !this.checked;"/>											
+											 onclick="document.getElementById('deficienciaEx').disabled = !this.checked;"/>
 											<label>Deficiência</label>
 										</div>
 									</td>
@@ -190,8 +190,8 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="dst" th:field="*{dst}"
-												 onclick="document.getElementById('dstEx').disabled = !this.checked;"/>											
-											  
+												 onclick="document.getElementById('dstEx').disabled = !this.checked;"/>
+
 											<label>Doença Sexualmente Transmissível</label>
 										</div>
 									</td>
@@ -202,7 +202,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="febre" th:field="*{febre}"
-											 onclick="document.getElementById('temperaturaFebre').disabled = !this.checked;"/>																		  
+											 onclick="document.getElementById('temperaturaFebre').disabled = !this.checked;"/>
 											<label>Febre</label>
 										</div>
 									</td>
@@ -213,7 +213,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="pressao" th:field="*{pressao}"
-												 onclick="document.getElementById('pressaoEx').disabled = !this.checked;"/>														  
+												 onclick="document.getElementById('pressaoEx').disabled = !this.checked;"/>
 											<label>Pressão</label>
 										</div>
 									</td>
@@ -224,7 +224,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="problemaCardiaco" th:field="*{problemaCardiaco}"
-											 	onclick="document.getElementById('problemaCardiacoEx').disabled = !this.checked;"/>													  
+											 	onclick="document.getElementById('problemaCardiacoEx').disabled = !this.checked;"/>
 											<label>Problemas Cardíacos</label>
 										</div>
 									</td>
@@ -235,7 +235,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="problemaNeurologico" th:field="*{problemaNeurologico}"
-												onclick="document.getElementById('problemaNeurologicoEx').disabled = !this.checked;"/>												  
+												onclick="document.getElementById('problemaNeurologicoEx').disabled = !this.checked;"/>
 											<label>Problemas Neurológicos</label>
 										</div>
 									</td>
@@ -246,7 +246,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="problemaRespiratorio" th:field="*{problemaRespiratorio}"
-												onclick="document.getElementById('problemaRespiratorioEx').disabled = !this.checked;"/>												  
+												onclick="document.getElementById('problemaRespiratorioEx').disabled = !this.checked;"/>
 											<label>Problemas Respiratórios</label>
 										</div>
 									</td>
@@ -257,7 +257,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="medicacao" th:field="*{medicacao}"
-												onclick="document.getElementById('medicacaoEx').disabled = !this.checked;"/>											  
+												onclick="document.getElementById('medicacaoEx').disabled = !this.checked;"/>
 											 <label>Faz uso de algum Medicamento</label>
 										</div>
 									</td>
@@ -268,7 +268,7 @@
 									<td>
 										<div class="">
 											<input type="checkbox" id="outros" th:field="*{outros}"
-											onclick="document.getElementById('outrosEx').disabled = !this.checked;"/>	 
+											onclick="document.getElementById('outrosEx').disabled = !this.checked;"/>
 											<label>Outros Sintomas</label>
 										</div>
 									</td>
@@ -286,7 +286,7 @@
 	</div>
 
 	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-pacientes :: pesquisaRapidaPacientes"></th:block>
-	
+
 </section>
 
 <th:block layout:fragment="javascript-extra">
@@ -302,9 +302,9 @@
 	</script>
 	
 </th:block>
-</html>          
+</html>
 
-                  
+
 
 
 

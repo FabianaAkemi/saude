@@ -40,9 +40,11 @@ public class Usuario implements Serializable {
 	@Email(message = "E-mail inválido")
 	private String email;
 	
+	@NotBlank(message = "Senha é obrigatório")
 	private String senha;
 	
 	@Transient
+	@NotBlank(message = "Confirmação de senha é obrigatório")
 	private String confirmacaoSenha;
 	
 	private Boolean status;

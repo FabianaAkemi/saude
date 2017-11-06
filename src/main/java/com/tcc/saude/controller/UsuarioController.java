@@ -58,7 +58,7 @@ public class UsuarioController {
 			result.rejectValue("senha", e.getMessage(), e.getMessage());
 			return novo(usuario);		}
 		
-		attributes.addFlashAttribute("mensagem", "Usuário, salvo com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso!");
 		return new ModelAndView("redirect:/usuarios/novo");
 	}
 	
