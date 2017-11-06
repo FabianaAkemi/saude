@@ -3,7 +3,9 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:saude="http://tcc.saude"
-	layout:decorate="~{layout/home}">
+	layout:decorate="~{layout/home}"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
+
 <head>
 <title>Cadastro Triagem</title>
 </head>
@@ -12,51 +14,31 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<div class="row">
-			<div class="col-sm-10">
-				<h1>Cadastro de Triagem</h1>
-			</div>
-			
-			<div class="col-sm-2">
-				<div class="aw-page-header-controls">
-					<a class="btn  btn-default" th:href="@{/triagens}">
-						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
-					</a>
+				<div class="col-sm-10">
+					<h1>Cadastro de Triagem</h1>
 				</div>
-			</div>
+
 			</div>
 		</div>
 	</div>
        
        
-	<div class="container-fluid">         	
-		<form method="POST"  th:action="@{/triagens/novo}">
+	<div class="container-fluid">
+	        <form method="POST" th:action="@{/triagens/novo}" th:object="${triagem}">
+		     <saude:message/>
+
 			<div class="row">
-				<div class="form-group  col-sm-12">
-					<label class="control-label" for="paciente">Paciente*</label>
+				<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente">
+					<label class="control-label" for="paciente">Paciente</label>
 					<div class="input-group">
 						<input id="paciente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Paciente"/>
-						<input id="idPaciente" type="hidden"/>
+						<input id="idPaciente" type="hidden" th:field="*{idTela}"/>
 						<span class="input-group-btn">
 						  <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaPacientes">
 						  	<i class="glyphicon  glyphicon-search"></i>
 						  </button>
 						</span>
 				    </div>
-				</div>                	
-			</div>
-                
-			<div class="row">
-           		<div class="form-group  col-sm-12">
-					<label class="control-label" for="medico">Médico*</label>
-					<div class="input-group">
-      					<input id="medico" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Médico"/>
-						<input id="idMedico" type="hidden"/>      					
-      					<span class="input-group-btn">
-					        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaMedicos">
-					        	<i class="glyphicon  glyphicon-search"></i>
-					        </button>
-    					</span>
-   					</div>    
 				</div>                	
 			</div>
 			
@@ -85,34 +67,34 @@
 									<tr>
 										<td class="sd-triagem-etapa ">1</td>
 										<td>											
-											<input type="checkbox"> <label>Calafrios</label>
+											<input type="checkbox" id="calafrio" th:field="*{calafrio}"/><label>Calafrios</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">2</td>
 										<td>											
-											<input type="checkbox"> <label>Dor nas Articulações</label>
+											<input type="checkbox" id="articulacao" th:field="*{articulacao}"/> <label>Dor nas Articulações</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa ">3</td>
 										<td>											
-											<input type="checkbox"> <label>Diabetes</label>
+											<input type="checkbox" id="diabetes" th:field="*{diabetes}"/> <label>Diabetes</label>
 										</td>
-									</tr>	
+									</tr>
 									<tr>
 										<td class="sd-triagem-etapa ">4</td>
 										<td>											
-											<input type="checkbox"> <label>Dor na Cabeça</label>
+											<input type="checkbox" id="dorCabeca" th:field="*{dorCabeca}"/> <label>Dor na Cabeça</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">5</td>
 										<td>											
-											<input type="checkbox"> <label>Dor no Corpo</label>
+											<input type="checkbox" id="dorCorpo" th:field="*{dorCorpo}"/><label>Dor no Corpo</label>
 										</td>
 									</tr>
-																														
+
 								</tbody>
 							</table>  
 						</div>
@@ -129,25 +111,25 @@
 									<tr>
 										<td class="sd-triagem-etapa ">6</td>
 										<td>											
-											<input type="checkbox"> <label>Dor Renal</label>
+											<input type="checkbox" id="renal" th:field="*{renal}"/> <label>Dor Renal</label>
 										</td>
 									</tr>					
 									<tr>
 										<td class="sd-triagem-etapa">7</td>
 										<td>											
-											<input type="checkbox"> <label>Hepatite</label>
+											<input type="checkbox" id="hepatite" th:field="*{hepatite}"/> <label>Hepatite</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">8</td>
 										<td>											
-											<input type="checkbox"> <label>Hipertensão</label>
+											<input type="checkbox" id="hipertensao" th:field="*{hipertensao}"/> <label>Hipertensão</label>
 										</td>
 									</tr>
 									<tr>
-										<td class="sd-triagem-etapa">9</td>
+										<td class="sd-triagem-etapa ">9</td>
 										<td>											
-											<input type="checkbox"> <label>Sonolência Excessiva</label>
+											<input type="checkbox" id="sonolencia" th:field="*{sonolencia}"/> <label>Sonolência Excessiva</label>
 										</td>
 									</tr>											
 								</tbody>
@@ -174,111 +156,123 @@
 									<td class="sd-margin ">1</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="alergia" th:field="*{alergia}"
+											 onclick="document.getElementById('alergiaEx').disabled = !this.checked;"/>
 											<label>Alergia</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="alergiaEx" disabled="disabled" th:field="*{alergiaEx}"/></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">2</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="cancer" th:field="*{cancer}"
+											 onclick="document.getElementById('cancerEx').disabled = !this.checked;"/>
 											<label>Câncer</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="cancerEx" disabled="disabled" th:field="*{cancerEx}"/> </td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">3</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="deficiencia" th:field="*{deficiencia}"
+											 onclick="document.getElementById('deficienciaEx').disabled = !this.checked;"/>
 											<label>Deficiência</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="deficienciaEx"  disabled="disabled" th:field="*{deficienciaEx}"/> </td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">4</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="dst" th:field="*{dst}"
+												 onclick="document.getElementById('dstEx').disabled = !this.checked;"/>
+
 											<label>Doença Sexualmente Transmissível</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="dstEx"  disabled="disabled" th:field="*{dstEx}"/>  </td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">5</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="febre" th:field="*{febre}"
+											 onclick="document.getElementById('temperaturaFebre').disabled = !this.checked;"/>
 											<label>Febre</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="temperaturaFebre"  disabled="disabled" th:field="*{temperaturaFebre}"/></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">6</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="pressao" th:field="*{pressao}"
+												 onclick="document.getElementById('pressaoEx').disabled = !this.checked;"/>
 											<label>Pressão</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="pressaoEx"  disabled="disabled" th:field="*{pressaoEx}"/></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">7</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="problemaCardiaco" th:field="*{problemaCardiaco}"
+											 	onclick="document.getElementById('problemaCardiacoEx').disabled = !this.checked;"/>
 											<label>Problemas Cardíacos</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="problemaCardiacoEx"  disabled="disabled" th:field="*{problemaCardiacoEx}"></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">8</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="problemaNeurologico" th:field="*{problemaNeurologico}"
+												onclick="document.getElementById('problemaNeurologicoEx').disabled = !this.checked;"/>
 											<label>Problemas Neurológicos</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="problemaNeurologicoEx"  disabled="disabled" th:field="*{problemaNeurologicoEx}"></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">9</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="problemaRespiratorio" th:field="*{problemaRespiratorio}"
+												onclick="document.getElementById('problemaRespiratorioEx').disabled = !this.checked;"/>
 											<label>Problemas Respiratórios</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="problemaRespiratorioEx"  disabled="disabled" th:field="*{problemaRespiratorioEx}"></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">10</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
-											<label>Faz uso de algum Medicamento</label>
+											<input type="checkbox" id="medicacao" th:field="*{medicacao}"
+												onclick="document.getElementById('medicacaoEx').disabled = !this.checked;"/>
+											 <label>Faz uso de algum Medicamento</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="medicacaoEx"  disabled="disabled" th:field="*{medicacaoEx}"></td>
 								</tr>
 								<tr>
 									<td class="sd-margin ">11</td>
 									<td>
 										<div class="">
-											<input type="checkbox"> 
+											<input type="checkbox" id="outros" th:field="*{outros}"
+											onclick="document.getElementById('outrosEx').disabled = !this.checked;"/>
 											<label>Outros Sintomas</label>
 										</div>
 									</td>
-									<td><input type="text" class="form-control"></td>
+									<td><input type="text" class="form-control" id="outrosEx"  disabled="disabled" th:field="*{outrosEx}"></td>
 								</tr>
 								
 												
@@ -292,13 +286,13 @@
 	</div>
 
 	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-pacientes :: pesquisaRapidaPacientes"></th:block>
-	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-medicos :: pesquisaRapidaMedicos"></th:block>
+
 </section>
+
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
 	<script th:src="@{/javascripts/paciente-pesquisa-rapida.js}"></script>
-	<script th:src="@{/javascripts/medico-pesquisa-rapida.js}"></script>
-		<script>
+	<script>
 	$(function() {
 		$('.js-aba-triagem a').click(function (e) {
 			e.preventDefault();
@@ -309,5 +303,8 @@
 	
 </th:block>
 </html>
+
+
+
 
 
