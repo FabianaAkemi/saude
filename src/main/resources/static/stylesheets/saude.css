@@ -92,6 +92,9 @@
     height: 28px;
 	position: relative;
 	overflow-y: auto;
+    margin-top: -9px;
+    margin-left: 10px;
+    margin-right: -10px;
 }
 
 .usuario-logado {
