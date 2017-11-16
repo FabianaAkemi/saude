@@ -14,8 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +30,7 @@ import com.tcc.saude.repository.Pacientes;
 import com.tcc.saude.repository.filter.PacienteFilter;
 import com.tcc.saude.service.CadastroPacienteService;
 import com.tcc.saude.service.Exception.CpfPacienteCadastradoException;
+import com.tcc.saude.service.Exception.ImpossivelExcluirEntidadeException;
 
 @Controller
 @RequestMapping("/pacientes")
@@ -49,7 +52,7 @@ public class PacienteController {
 
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping({ "/novo", "{\\+d}" })
 	private ModelAndView salvar(@Valid Paciente paciente, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -97,5 +100,24 @@ public class PacienteController {
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<Void> tratarIllegalArgumentException(IllegalArgumentException e) {
 		return ResponseEntity.badRequest().build();
+	}
+	
+	@DeleteMapping("/{id}")
+	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("id") Long id) {
+		try {
+			cadastroPacienteService.excluir(id);
+		} catch (ImpossivelExcluirEntidadeException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) { 
+		Paciente paciente = pacientes.findOne(id);
+		
+		ModelAndView mv = novo(paciente);
+		mv.addObject(paciente);
+		return mv;
 	}
 }

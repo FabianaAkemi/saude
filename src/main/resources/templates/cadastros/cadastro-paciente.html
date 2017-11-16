@@ -5,7 +5,7 @@
 	xmlns:saude="http://tcc.saude"
 	layout:decorate="~{layout/home}">
 <head>
-<title>Cadastro do Paciente</title>
+	<title>Paciente</title>
 </head>
 <body>
 	<section layout:fragment="conteudo">
@@ -14,11 +14,13 @@
          <div class="container-fluid">
             <div class="row">
 				<div class="col-sm-10">
-					<h1>Cadastro de Paciente</h1>
+					
+					<h1 th:if="${paciente.novo}">Cadastro de Paciente</h1>
+					<h1 th:unless="${paciente.novo}">Edição de Paciente</h1>
 				</div>
 
 				<div class="col-sm-2">
-					<div class="aw-page-header-controls">
+					<div class="aw-page-header-controls" th:if="${paciente.novo}">
 						<a class="btn  btn-default" th:href="@{/pacientes}">
 							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
 						</a>
@@ -28,11 +30,14 @@
          </div>
        </div>
 
-       <div class="container-fluid">
-
-         <form method="POST" class="form-vertical  js-form-loading" th:object="${paciente}" th:action="@{/pacientes/novo}">
-		     <saude:message/>
-
+       <div class="container-fluid">         	
+         <form method="POST" class="form-vertical  js-form-loading" th:object="${paciente}"
+       			 th:action="${paciente.novo} ? @{/pacientes/novo} : @{/pacientes/{id}(id=${paciente.id})}">
+         		
+		     <saude:message/>	
+				
+			   <input type="hidden" th:field="*{id}"/>
+			   		
                <div class="row">
                    <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
                        <label for="nome"  class="control-label">Nome</label>

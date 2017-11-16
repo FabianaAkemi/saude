@@ -5,7 +5,7 @@
 	xmlns:saude="http://tcc.saude"
 	layout:decorate="~{layout/home}">
 <head>
-<title>Cadastro de Colaborador</title>
+		<title>Colaborador</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 
 </head>
@@ -16,11 +16,13 @@
          <div class="container-fluid">
             <div class="row">
 				<div class="col-sm-10">
-					<h1>Cadastro de Colaborador</h1>
+					
+					<h1 th:if="${colaborador.novo}">Cadastro de Colaborador</h1>
+					<h1 th:unless="${colaborador.novo}">Edição de Colaborador</h1>
 				</div>
 			
 				<div class="col-sm-2">
-					<div class="aw-page-header-controls">
+					<div class="aw-page-header-controls" th:if="${colaborador.novo}">
 						<a class="btn  btn-default" th:href="@{/colaboradores}">
 							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
 						</a>
@@ -32,8 +34,12 @@
 
        <div class="container-fluid">
          	
-         <form method="POST" class="form-vertical  js-form-loading" th:object="${colaborador}" th:action="@{/colaboradores/novo}">
+         <form method="POST" class="form-vertical  js-form-loading" th:object="${colaborador}" 
+                	th:action="${colaborador.novo} ? @{/colaboradores/novo} : @{/colaboradores/{id}(id=${colaborador.id})}">
+         
 		     <saude:message/>	
+				
+				<input type="hidden" th:field="*{id}"/>
 				
                <div class="row">
                    <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
