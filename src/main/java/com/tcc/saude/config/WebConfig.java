@@ -23,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -65,7 +66,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
             
             engine.addDialect(new LayoutDialect() );
             engine.addDialect(new SaudeDialect() );
+            engine.addDialect(new DataAttributeDialect());
     		engine.addDialect(new SpringSecurityDialect());
+    		
 
             return engine;
     }

@@ -165,6 +165,9 @@ public class Paciente implements Serializable {
 //		this.dataNascimento = dataNascimento;
 //	}
 	
+	public boolean isNovo() {
+		return id == null;
+	}
 
 	@Override
 	public int hashCode() {

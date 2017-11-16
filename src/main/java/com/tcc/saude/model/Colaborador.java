@@ -104,6 +104,9 @@ public class Colaborador implements Serializable{
 		this.atividadeExercida = atividadeExercida;
 	}
 	
+	public boolean isNovo() {
+		return id == null;
+	}
 
 	@Override
 	public int hashCode() {

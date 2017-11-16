@@ -14,8 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +31,7 @@ import com.tcc.saude.repository.Medicos;
 import com.tcc.saude.repository.filter.MedicoFilter;
 import com.tcc.saude.service.CadastroMedicoService;
 import com.tcc.saude.service.Exception.CrmMedicoCadastradoException;
+import com.tcc.saude.service.Exception.ImpossivelExcluirEntidadeException;
 
 @Controller
 @RequestMapping("/medicos")
@@ -50,7 +53,7 @@ public class MedicoController {
 
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping({ "/novo", "{\\+d}" })
 	private ModelAndView salvar(@Valid Medico medico, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -99,4 +102,24 @@ public class MedicoController {
   	public ResponseEntity<Void> tratarIllegalArgumentException(IllegalArgumentException e) {
   		return ResponseEntity.badRequest().build();
   	}
+  	
+  	@DeleteMapping("/{id}")
+	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("id") Long id) {
+		try {
+			cadastroMedicoService.excluir(id);
+		} catch (ImpossivelExcluirEntidadeException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+		return ResponseEntity.ok().build();
+	}
+  	
+	@GetMapping("/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) { 
+		Medico medico = medicos.findOne(id);
+		
+		ModelAndView mv = novo(medico);
+		mv.addObject(medico);
+		return mv;
+	}
+
 }

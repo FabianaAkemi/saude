@@ -73,7 +73,8 @@
 						<td th:text="${{triagem.dataCriacao}}"></td>
 						<td th:text="${triagem.usuario.nome}"></td>
 	                 	<td class="text-center">
-							<a class="btn  btn-link  btn-xs" title="Informacao"> 
+							<a class="btn  btn-link  btn-xs" type="" title="Informacao" data-toggle="modal" 
+								data-target="#pesquisaDetalhadaTriagem">
 								<i class="glyphicon glyphicon-option-horizontal"></i>
 							</a>
 						</td>
@@ -88,6 +89,9 @@
     	 
     	 <saude:pagination page="${pagina}"/>
 	</div>
+	
+		<th:block th:replace="pesquisas/rapida/pesquisa-detalhada-triagem :: pesquisaDetalhadaTriagem"></th:block>
+	
 </section>
 </body>
 
