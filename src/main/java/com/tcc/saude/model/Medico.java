@@ -95,6 +95,11 @@ public class Medico implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public boolean isNovo() {
+		return id == null;
+	}
+
 
 	@Override
 	public int hashCode() {

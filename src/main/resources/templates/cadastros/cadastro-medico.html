@@ -6,7 +6,7 @@
       xmlns:saude="http://tcc.saude"
       layout:decorate="~{layout/home}">
 <head>
-    <title>Cadastro de Médico</title>
+    <title>Médico</title>
 </head>
 
 <body>
@@ -16,11 +16,12 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-10">
-					<h1>Cadastro Medico</h1>
+					<h1 th:if="${medico.novo}">Cadastro de Médico</h1>
+					<h1 th:unless="${medico.novo}">Edição de Médico</h1>
 				</div>
-
+				
 				<div class="col-sm-2">
-					<div class="aw-page-header-controls">
+					<div class="aw-page-header-controls" th:if="${medico.novo}">
 						<a class="btn  btn-default" th:href="@{/medicos}">
 							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
 						</a>
@@ -29,12 +30,17 @@
 			</div>
 		</div>
 	  </div>
+	  
+        <div class="container-fluid">   
+       
+            <form method="POST" class="form-vertical  js-form-loading" th:object="${medico}"
+      			 th:action="${medico.novo} ? @{/medicos/novo} : @{/medicos/{id}(id=${medico.id})}">
 
-        <div class="container-fluid">
-
-            <form method="POST" class="form-vertical  js-form-loading" th:object="${medico}" th:action="@{/medicos/novo}">
 	        	<saude:message/>
 
+
+			   <input type="hidden" th:field="*{id}"/>
+				
                 <div class="row">
                     <div class="form-group  col-sm-12  sd-required" saude:classforerror="nome">
                         <label for="nome" class="control-label">Nome</label>
@@ -50,10 +56,10 @@
                     </div>
 
                     <div class="form-group  col-sm-6 sd-required" saude:classforerror="tipoEspecialista">
-                        <label for="especialidade"  class="control-label">Especialidade</label>
-                        <select id="especialidade" class="form-control" th:field="*{tipoEspecialista}">
+                        <label for="especialista"  class="control-label">Especialista</label>
+                        <select id="especialista" class="form-control" th:field="*{tipoEspecialista}">
                             <option value="">Selecione</option>
-                            <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}"
+                            <option th:each="tipoEspecialista : ${especialistas}" th:value="${tipoEspecialista}" 
                             	th:text="${tipoEspecialista.tipo}">teste</option>
                         </select>
                     </div>
@@ -73,12 +79,12 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn  btn-primary" type="submit" id="salvar">Salvar</button>
+                    <button class="btn  btn-primary" type="submit">Salvar</button>
                 </div>
 
             </form>
         </div>
     </section>
-
+    
 </body>
 </html>
