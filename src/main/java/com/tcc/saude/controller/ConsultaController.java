@@ -1,21 +1,29 @@
 package com.tcc.saude.controller;
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tcc.saude.controller.page.PageWrapper;
 import com.tcc.saude.model.Consulta;
+import com.tcc.saude.repository.Consultas;
 import com.tcc.saude.repository.Medicos;
 import com.tcc.saude.repository.Pacientes;
+import com.tcc.saude.repository.filter.ConsultaFilter;
 import com.tcc.saude.security.UsuarioLogado;
 import com.tcc.saude.service.CadastroConsultaService;
-import com.tcc.saude.service.Exception.PacienteNuloException;
 
 @Controller
 @RequestMapping("/consultas")
@@ -30,8 +38,8 @@ public class ConsultaController {
 	@Autowired
 	private Medicos medicos;
 	
-/*	@Autowired
-	private Consultas consultas;*/
+	@Autowired
+	private Consultas consultas;
 	
 	@GetMapping("/novo")
 	public ModelAndView nova(Consulta consulta) {
@@ -50,21 +58,14 @@ public class ConsultaController {
 		if (result.hasErrors()) {
 			return nova(consulta);
 		}
-		try{
-			cadastroConsultaService.salvar(consulta);
-
-		} catch (PacienteNuloException e) {
-			result.rejectValue("paciente", e.getMessage(), e.getMessage());
-			return nova(consulta);
-			
-		}
 		
+		cadastroConsultaService.salvar(consulta);
 		
 		attributes.addFlashAttribute("mensagem", "Consulta, salva com sucesso!");
 		return new ModelAndView("redirect:/consultas/novo");
 	}
 	
-	/*@GetMapping
+	@GetMapping
 	public ModelAndView pesquisar(ConsultaFilter consultaFilter,
 			@PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("pesquisas/pesquisa-consulta");
@@ -74,5 +75,14 @@ public class ConsultaController {
 				, httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
 		return mv;
-	}*/
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView pesquisaCompleta(@PathVariable("id") Long id) { 
+		Consulta consulta = consultas.findOne(id);
+		
+		ModelAndView mv = nova(consulta);
+		mv.addObject(consulta);
+		return mv;
+	}
 }

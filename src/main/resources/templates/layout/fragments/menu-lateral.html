@@ -10,8 +10,8 @@
             <nav class="aw-menu  js-menu">
                 <ul class="aw-menu__list">
                 
-	                <li class="aw-menu__item">
-	          			<a th:href="@{/home}"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
+	                <li class="aw-menu__item" saude:menu="@{/}">
+	          			<a th:href="@{/}"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
 	        		</li>
 
                     <li class="aw-menu__item">
@@ -60,14 +60,21 @@
                            	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/colaboradores}">
                             	<a th:href="@{/colaboradores}">Pesquisar Colaboradores</a>
                            	</li>
-                           	
+							
+						    <li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/usuarios}">
+                            	<a th:href="@{/usuarios}">Pesquisar Usuários</a>
+                           	</li>
+	
                            	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/triagens}">
                             	<a th:href="@{/triagens}">Pesquisar Triagens</a>
                            	</li>
                            	
-                           	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/usuarios}">
-                            	<a th:href="@{/usuarios}">Pesquisar Usuários</a>
-                           	</li>
+                         	<li class="aw-menu__item  aw-menu__item--link" saude:menu="@{/consultas}">
+                                <a th:href="@{/consultas}"><span>Pesquisar Consulta</span></a>
+                            </li>
+                           	
+                           	
+                        
                         </ul>
                     </li>
 

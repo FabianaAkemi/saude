@@ -7,7 +7,7 @@
       xmlns:saude="http://tcc.saude"      
       layout:decorate="~{layout/home}">
 <head>
-    <title>Pesquisa de Triagens</title>
+    <title>Pesquisa de consulta</title>
 </head>
 <body>
 <section layout:fragment="conteudo">
@@ -16,18 +16,18 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-10">
-					<h1>Pesquisa de Triagens</h1>
+					<h1>Pesquisa de Consulta</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div class="container-fluid">
-		<form method="GET" th:object="${triagemFilter}" th:action="@{/triagens}">
+		<form method="GET" th:object="${consultaFilter}" th:action="@{/consultas}">
 			<div class="row">
 				<div class="form-group  col-sm-6">
-					<label class="control-label" for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{namePaciente}"/>
+					<label class="control-label" for="nomePaciente">Nome do Paciente</label>
+					<input type="text" class="form-control" id="nomePaciente" autofocus="autofocus" th:field="*{namePaciente}"/>
 				</div>
 				<div class="form-group  col-sm-6">
 					<label for="cpf" class="control-label">CPF</label>
@@ -37,6 +37,10 @@
 			
 			
 			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label class="control-label" for="nomeMedico">Nome do Médico</label>
+					<input type="text" class="form-control" id="nomeMedico" autofocus="autofocus" th:field="*{nameMedico}"/>
+				</div>
 				<div class="form-group  col-sm-6">
 					<label for="dataCriacaoInicial">Data de criação</label>
 					<div class="form-inline">
@@ -57,31 +61,32 @@
 	            	<tr>
 	                	<th>
 	                		<saude:order page="${pagina}" field="p.nome" text="Paciente"/>
-	                	</th>
+	                	</th>	                	
 	                	<th> CPF</th>
+	                	<th> Médico</th>
+	                	<th> Tipo Especialista</th>	                	
 	                	<th>Data de criação</th>	                	
-	                	<th>Usuário</th>
 						<th class="table-col-acoes"></th>
-
 					</tr>
 				</thead>
 			
 	            <tbody>
-					<tr th:each="triagem : ${pagina.conteudo}">
-						<td th:text="${triagem.paciente.nome}"></td>
-						<td th:text="${triagem.paciente.cpf}"></td>
-						<td th:text="${{triagem.dataCriacao}}"></td>
-						<td th:text="${triagem.usuario.nome}"></td>
+					<tr th:each="consulta : ${pagina.conteudo}">
+						<td th:text="${consulta.paciente.nome}"></td>
+						<td th:text="${consulta.paciente.cpf}"></td>
+						<td th:text="${consulta.medico.nome}"></td>
+						<td th:text="${consulta.medico.tipoEspecialista}"></td>							
+						<td th:text="${{consulta.dataCriacao}}"></td>
 	                 	<td class="text-center">
 							<a class="btn  btn-link  btn-xs" type="" title="Informacao" data-toggle="modal" 
-								th:href="@{/triagens/{id}(id=${triagem.id})}">						
+								th:href="@{/consultas/{id}(id=${consulta.id})}">						
 								 <i class="glyphicon glyphicon-option-horizontal"></i>
 							</a>
 						</td>
 	                </tr>
 	                
 	                <tr th:if="${pagina.vazia}">
-	                	<td colspan="4">Nenhuma Triagem encontrada</td>
+	                	<td colspan="5">Nenhuma Consulta encontrada</td>
 	                </tr>
 	             </tbody>
          	</table>

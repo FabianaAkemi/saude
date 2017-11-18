@@ -12,6 +12,6 @@ import com.tcc.saude.repository.helper.usuario.UsuariosQueries;
 @Repository
 public interface Usuarios extends JpaRepository<Usuario, Long>, UsuariosQueries{
 
-	Optional<Usuario> findByEmail(String email);
-
+	Optional<Usuario> findByEmail(String email);	
+	
 }

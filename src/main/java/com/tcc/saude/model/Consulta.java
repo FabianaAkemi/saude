@@ -39,6 +39,7 @@ public class Consulta implements Serializable{
 	@Column(name = "data_criacao")
     private LocalDateTime dataCriacao; 
 	
+	
 	private String descricao;
 	
 	@Transient
@@ -110,6 +111,10 @@ public class Consulta implements Serializable{
 	public void setIdMedico(String idMedico) {
 		this.idMedico = idMedico;
 	}	
+	
+	public boolean isNovo() {
+		return id == null;
+	}
 
 
 	@Override

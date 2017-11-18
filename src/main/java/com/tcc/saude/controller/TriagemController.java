@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,7 +22,6 @@ import com.tcc.saude.repository.Triagens;
 import com.tcc.saude.repository.filter.TriagemFilter;
 import com.tcc.saude.security.UsuarioLogado;
 import com.tcc.saude.service.CadastroTriagemService;
-import com.tcc.saude.service.Exception.PacienteNuloException;
 
 @Controller
 @RequestMapping("/triagens")
@@ -52,15 +52,8 @@ public class TriagemController {
 			if (result.hasErrors()) {
 				return nova(triagem);
 			}
-			try{
-				cadastroTriagemService.salvar(triagem);
-
-			}catch(PacienteNuloException e) {
-				result.rejectValue("paciente", e.getMessage(), e.getMessage());
-				return nova(triagem);
-				
-			}
 			
+			cadastroTriagemService.salvar(triagem);			
 			attributes.addFlashAttribute("mensagem", "Triagem, salva com sucesso!");
 			return new ModelAndView("redirect:/triagens/novo");
 		}
@@ -74,6 +67,15 @@ public class TriagemController {
 			PageWrapper<Triagem> paginaWrapper = new PageWrapper<>(triagens.filtrar(triagemFilter, pageable)
 					, httpServletRequest);
 			mv.addObject("pagina", paginaWrapper);
+			return mv;
+		}
+		
+		@GetMapping("/{id}")
+		public ModelAndView pesquisaCompleta(@PathVariable("id") Long id) { 
+			Triagem triagem = triagens.findOne(id);
+			
+			ModelAndView mv = nova(triagem);
+			mv.addObject(triagem);
 			return mv;
 		}
 }

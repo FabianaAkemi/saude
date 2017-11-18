@@ -67,12 +67,9 @@ public class ConsultasImpl  implements ConsultasQueries{
 			}
 			
 			if (!StringUtils.isEmpty(filtro.getNameMedico())) {
-				criteria.add(Restrictions.ilike("medico.nome", filtro.getNamePaciente(), MatchMode.ANYWHERE));
-			}
-			
-			if (!StringUtils.isEmpty(filtro.getCrmMedico())) {
-				criteria.add(Restrictions.eq("medico.crm", filtro.getRemoveFormatacao()));
-			}
+				criteria.add(Restrictions.ilike("medico.nome", filtro.getNameMedico(), MatchMode.ANYWHERE));
+			}	
+	
 						
 			if (!StringUtils.isEmpty(filtro.getNamePaciente())) {
 				criteria.add(Restrictions.ilike("paciente.nome", filtro.getNamePaciente(), MatchMode.ANYWHERE));

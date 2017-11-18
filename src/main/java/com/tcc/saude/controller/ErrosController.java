@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrosController {
 	
 	
-	@GetMapping("/403")
-	public String permissaoNegada(){
-		return "errors/403";
-	}
 	
 	@GetMapping("/404")
 	public String paginaNaoLocalizada() {

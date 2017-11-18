@@ -7,7 +7,7 @@
 	xmlns:data="http://www.thymeleaf.org/extras/data">
 	
 <head>
-<title>Cadastro Consulta</title>
+<title>Consulta</title>
 </head>
 <section layout:fragment="conteudo">
 
@@ -15,19 +15,47 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-10">
-					<h1>Cadastro de Consulta</h1>
+					<h1 th:if="${consulta.novo}">Cadastro da Consulta</h1>
+					<h1 th:unless="${consulta.novo}"> Consulta Detalhada</h1>
 				</div>
-
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls" th:unless="${consulta.novo}">
+						<a class="btn  btn-default" th:href="@{/consultas}">
+							<i class="glyphicon glyphicon-share-alt"></i> <span class="hidden-xs  hidden-sm">Voltar</span>
+						</a>
+					</div>
+					<div class="aw-page-header-controls" th:if="${consulta.novo}">
+						<a class="btn  btn-default" th:href="@{/consultas}">
+							<i class="glyphicon glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
        
        
 	<div class="container-fluid">    
-	        <form method="POST" th:action="@{/consultas/novo}" th:object="${consulta}">
+	        <form method="POST"  th:object="${consulta}"
+	        	 th:action="${consulta.novo} ? @{/consultas/novo} : @{/consultas/{id}(id=${consulta.id})}">
 		     <saude:message/>	
 		     
-				<div class="row">
+     		     <input type="hidden" th:field="*{id}"/>	
+     		     			
+			     <div class="row" th:unless="${consulta.novo}">
+			     	<div class="form-group  col-lg-6">	
+			     		<label class="sd-label">Paciente: </label>	     		
+			     		<label class="sd-detalhada" th:text="${consulta.paciente.nome}"></label>
+			     	</div> 
+			     	<div class="form-group  col-lg-6">	
+			     		<label class="sd-label">Médico: </label>	     		
+			     		<label class="sd-detalhada" th:text="${consulta.medico.nome}"></label>
+			     	</div>  	     	
+				</div>
+			    
+		     
+				<div class="row" th:if="${consulta.novo}">
 					<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente">
 						<label class="control-label" for="paciente">Paciente</label>
 						<div class="input-group">
@@ -42,7 +70,7 @@
 					</div>                	
 				</div>
 				
-				<div class="row">
+				<div class="row" th:if="${consulta.novo}">
 					<div class="form-group  col-sm-12 sd-required" saude:classforerror="medico">
 						<label class="control-label" for="medico">Médico</label>
 						<div class="input-group">
@@ -60,11 +88,16 @@
 				<div class="row">
 					<div class="form-group col-sm-12 sd-required" saude:classforerror="descricao">
 						<label class="control-label" for="descricao">Descrição</label>						
-						<textarea class="form-control" rows="5" id="descricao" th:field="*{descricao}"></textarea>						
+						<textarea class="form-control" rows="5" id="descricao" th:field="*{descricao}" th:disabled="${!consulta.novo}"></textarea>						
 					</div>
 				</div>	
 			
-         	  	<button type="submit" class="btn  btn-primary">Salvar</button>
+         		<button th:if="${consulta.novo}" type="submit" class="btn  btn-primary">Salvar</button>  
+                
+                <div class="aw-footer-disclaimer" th:unless="${consulta.novo}">                
+                	<label>Data e Horário da Consulta: </label>
+		     		<label th:text="${{consulta.dataCriacao}}"></label>
+                </div>
 			</form>
 	</div>
 

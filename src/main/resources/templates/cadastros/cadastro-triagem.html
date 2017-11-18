@@ -7,27 +7,50 @@
 	xmlns:data="http://www.thymeleaf.org/extras/data">
 	
 <head>
-<title>Cadastro Triagem</title>
+<title>Triagem</title>
 </head>
 <section layout:fragment="conteudo">
 
 	<div class="page-header">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-10">
-					<h1>Cadastro de Triagem</h1>
+				<div class="col-sm-10">					
+					<h1 th:if="${triagem.novo}">Cadastro de Triagem</h1>
+					<h1 th:unless="${triagem.novo}"> Triagem Detalhada</h1>
 				</div>
-
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls" th:unless="${triagem.novo}">
+						<a class="btn  btn-default" th:href="@{/triagens}">
+							<i class="glyphicon glyphicon-share-alt"></i> <span class="hidden-xs  hidden-sm">Voltar</span>
+						</a>
+					</div>
+					<div class="aw-page-header-controls" th:if="${triagem.novo}">
+						<a class="btn  btn-default" th:href="@{/triagens}">
+							<i class="glyphicon glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
        
        
 	<div class="container-fluid">    
-	        <form method="POST" th:action="@{/triagens/novo}" th:object="${triagem}">
+	        <form method="POST" class="form-vertical  js-form-loading" th:object="${triagem}"
+	        	 th:action="${triagem.novo} ? @{/triagens/novo} : @{/triagens/{id}(id=${triagem.id})}">
 		     <saude:message/>	
 		     
-			<div class="row">
+		     <input type="hidden" th:field="*{id}"/>				
+		     <div class="row" th:unless="${triagem.novo}">
+		     	<div class="form-group  col-lg-6">	
+		     		<label class="sd-label">Paciente: </label>	     		
+		     		<label class="sd-detalhada" th:text="${triagem.paciente.nome}"></label>
+		     	</div>	  	     	
+						
+		     </div>
+		     
+			<div class="row" th:if="${triagem.novo}">
 				<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente">
 					<label class="control-label" for="paciente">Paciente</label>
 					<div class="input-group">
@@ -67,31 +90,31 @@
 									<tr>
 										<td class="sd-triagem-etapa ">1</td>
 										<td>											
-											<input type="checkbox" id="calafrio" th:field="*{calafrio}"/><label>Calafrios</label>
+											<input type="checkbox" id="calafrio" th:field="*{calafrio}" th:disabled="${!triagem.novo}"/><label>Calafrios</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">2</td>
 										<td>											
-											<input type="checkbox" id="articulacao" th:field="*{articulacao}"/> <label>Dor nas Articulações</label>
+											<input type="checkbox" id="articulacao" th:field="*{articulacao}" th:disabled="${!triagem.novo}"/> <label>Dor nas Articulações</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa ">3</td>
 										<td>											
-											<input type="checkbox" id="diabetes" th:field="*{diabetes}"/> <label>Diabetes</label>
+											<input type="checkbox" id="diabetes" th:field="*{diabetes}" th:disabled="${!triagem.novo}"/> <label>Diabetes</label>
 										</td>
 									</tr>	
 									<tr>
 										<td class="sd-triagem-etapa ">4</td>
 										<td>											
-											<input type="checkbox" id="dorCabeca" th:field="*{dorCabeca}"/> <label>Dor na Cabeça</label>
+											<input type="checkbox" id="dorCabeca" th:field="*{dorCabeca}" th:disabled="${!triagem.novo}"/> <label>Dor na Cabeça</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">5</td>
 										<td>											
-											<input type="checkbox" id="dorCorpo" th:field="*{dorCorpo}"/><label>Dor no Corpo</label>
+											<input type="checkbox" id="dorCorpo" th:field="*{dorCorpo}" th:disabled="${!triagem.novo}"/><label>Dor no Corpo</label>
 										</td>
 									</tr>
 																														
@@ -111,25 +134,25 @@
 									<tr>
 										<td class="sd-triagem-etapa ">6</td>
 										<td>											
-											<input type="checkbox" id="renal" th:field="*{renal}"/> <label>Dor Renal</label>
+											<input type="checkbox" id="renal" th:field="*{renal}" th:disabled="${!triagem.novo}"/> <label>Dor Renal</label>
 										</td>
 									</tr>					
 									<tr>
 										<td class="sd-triagem-etapa">7</td>
 										<td>											
-											<input type="checkbox" id="hepatite" th:field="*{hepatite}"/> <label>Hepatite</label>
+											<input type="checkbox" id="hepatite" th:field="*{hepatite}" th:disabled="${!triagem.novo}"/> <label>Hepatite</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">8</td>
 										<td>											
-											<input type="checkbox" id="hipertensao" th:field="*{hipertensao}"/> <label>Hipertensão</label>
+											<input type="checkbox" id="hipertensao" th:field="*{hipertensao}" th:disabled="${!triagem.novo}"/> <label>Hipertensão</label>
 										</td>
 									</tr>
 									<tr>
 										<td class="sd-triagem-etapa">9</td>
 										<td>											
-											<input type="checkbox" id="sonolencia" th:field="*{sonolencia}"/> <label>Sonolência Excessiva</label>
+											<input type="checkbox" id="sonolencia" th:field="*{sonolencia}" th:disabled="${!triagem.novo}"/> <label>Sonolência Excessiva</label>
 										</td>
 									</tr>											
 								</tbody>
@@ -156,7 +179,7 @@
 									<td class="sd-margin ">1</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="alergia" th:field="*{alergia}"
+											<input type="checkbox" id="alergia" th:field="*{alergia}" th:disabled="${!triagem.novo}"
 											 onclick="document.getElementById('alergiaEx').disabled = !this.checked;"/> 
 											<label>Alergia</label>
 										</div>
@@ -167,7 +190,7 @@
 									<td class="sd-margin ">2</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="cancer" th:field="*{cancer}"
+											<input type="checkbox" id="cancer" th:field="*{cancer}" th:disabled="${!triagem.novo}"
 											 onclick="document.getElementById('cancerEx').disabled = !this.checked;"/> 
 											<label>Câncer</label>
 										</div>
@@ -177,8 +200,8 @@
 								<tr>
 									<td class="sd-margin ">3</td>
 									<td>
-										<div class="">
-											<input type="checkbox" id="deficiencia" th:field="*{deficiencia}"
+										<div class=""> 
+											<input type="checkbox" id="deficiencia" th:field="*{deficiencia}" th:disabled="${!triagem.novo}"
 											 onclick="document.getElementById('deficienciaEx').disabled = !this.checked;"/>											
 											<label>Deficiência</label>
 										</div>
@@ -189,7 +212,7 @@
 									<td class="sd-margin ">4</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="dst" th:field="*{dst}"
+											<input type="checkbox" id="dst" th:field="*{dst}" th:disabled="${!triagem.novo}"
 												 onclick="document.getElementById('dstEx').disabled = !this.checked;"/>											
 											  
 											<label>Doença Sexualmente Transmissível</label>
@@ -201,7 +224,7 @@
 									<td class="sd-margin ">5</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="febre" th:field="*{febre}"
+											<input type="checkbox" id="febre" th:field="*{febre}" th:disabled="${!triagem.novo}"
 											 onclick="document.getElementById('temperaturaFebre').disabled = !this.checked;"/>																		  
 											<label>Febre</label>
 										</div>
@@ -212,7 +235,7 @@
 									<td class="sd-margin ">6</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="pressao" th:field="*{pressao}"
+											<input type="checkbox" id="pressao" th:field="*{pressao}" th:disabled="${!triagem.novo}"
 												 onclick="document.getElementById('pressaoEx').disabled = !this.checked;"/>														  
 											<label>Pressão</label>
 										</div>
@@ -223,7 +246,7 @@
 									<td class="sd-margin ">7</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="problemaCardiaco" th:field="*{problemaCardiaco}"
+											<input type="checkbox" id="problemaCardiaco" th:field="*{problemaCardiaco}" th:disabled="${!triagem.novo}"
 											 	onclick="document.getElementById('problemaCardiacoEx').disabled = !this.checked;"/>													  
 											<label>Problemas Cardíacos</label>
 										</div>
@@ -234,7 +257,7 @@
 									<td class="sd-margin ">8</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="problemaNeurologico" th:field="*{problemaNeurologico}"
+											<input type="checkbox" id="problemaNeurologico" th:field="*{problemaNeurologico}" th:disabled="${!triagem.novo}"
 												onclick="document.getElementById('problemaNeurologicoEx').disabled = !this.checked;"/>												  
 											<label>Problemas Neurológicos</label>
 										</div>
@@ -245,7 +268,7 @@
 									<td class="sd-margin ">9</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="problemaRespiratorio" th:field="*{problemaRespiratorio}"
+											<input type="checkbox" id="problemaRespiratorio" th:field="*{problemaRespiratorio}" th:disabled="${!triagem.novo}"
 												onclick="document.getElementById('problemaRespiratorioEx').disabled = !this.checked;"/>												  
 											<label>Problemas Respiratórios</label>
 										</div>
@@ -256,7 +279,7 @@
 									<td class="sd-margin ">10</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="medicacao" th:field="*{medicacao}"
+											<input type="checkbox" id="medicacao" th:field="*{medicacao}" th:disabled="${!triagem.novo}"
 												onclick="document.getElementById('medicacaoEx').disabled = !this.checked;"/>											  
 											 <label>Faz uso de algum Medicamento</label>
 										</div>
@@ -267,7 +290,7 @@
 									<td class="sd-margin ">11</td>
 									<td>
 										<div class="">
-											<input type="checkbox" id="outros" th:field="*{outros}"
+											<input type="checkbox" id="outros" th:field="*{outros}" th:disabled="${!triagem.novo}"
 											onclick="document.getElementById('outrosEx').disabled = !this.checked;"/>	 
 											<label>Outros Sintomas</label>
 										</div>
@@ -281,7 +304,13 @@
 				</div>				
 			</div>           
                   
-                <button type="submit" class="btn  btn-primary">Salvar</button>
+                <button th:if="${triagem.novo}" type="submit" class="btn  btn-primary">Salvar</button>  
+                
+                <div class="aw-footer-disclaimer" th:unless="${triagem.novo}">                
+                	<label>Data e Horário da triagem: </label>
+		     		<label th:text="${{triagem.dataCriacao}}"></label>
+                </div>
+                
 		</form>
 	</div>
 

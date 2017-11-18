@@ -8,7 +8,6 @@ public class ConsultaFilter {
 	private String cpfPaciente;
 	
 	private String nameMedico;
-	private String crmMedico;
 	
 	private LocalDate desde;	
 	private LocalDate ate;
@@ -38,13 +37,6 @@ public class ConsultaFilter {
 		this.nameMedico = nameMedico;
 	}
 
-	public String getCrmMedico() {
-		return crmMedico;
-	}
-
-	public void setCrmMedico(String crmMedico) {
-		this.crmMedico = crmMedico;
-	}
 
 	public LocalDate getDesde() {
 		return desde;

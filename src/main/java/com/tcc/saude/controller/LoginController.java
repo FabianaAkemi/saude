@@ -17,4 +17,9 @@ public class LoginController {
 		return "login";
 	}
 	
+	@GetMapping("/403")
+	public String permissaoNegada(){
+		return "errors/403";
+	}
+	
 }
