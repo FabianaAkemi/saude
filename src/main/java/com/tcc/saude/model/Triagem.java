@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 
 /**
  * Created by akemi on 02/03/17.
@@ -31,7 +29,6 @@ public class Triagem implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-    @NotBlank(message = "Paciente é obrigatório")
 	private Paciente paciente;
 	
     @Transient

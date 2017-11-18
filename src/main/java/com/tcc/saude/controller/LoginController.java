@@ -11,15 +11,15 @@ public class LoginController {
 	@GetMapping("/login")
 	public String login(@AuthenticationPrincipal User user) {
 		if (user != null) {
-			return "redirect:/home";
+			return "redirect:/pacientes";
 		}
 		
 		return "login";
 	}
 	
 	@GetMapping("/403")
-	public String permissaoNegada(){
-		return "errors/403";
+	public String acessoNegado() {
+		return "403";
 	}
 	
 }

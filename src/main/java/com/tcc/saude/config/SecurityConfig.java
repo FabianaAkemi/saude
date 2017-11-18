@@ -37,25 +37,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception { 
 		http
-			.authorizeRequests() 
-			    .antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO") /*ou .hasAnyRole("","") e para restringir o acesso e tem que inserir antes
-			antes do 				.anyRequest().authenticated()*/
-			    .anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
-			.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.and()
-			.exceptionHandling()
-				.accessDeniedPage("/403")
-				.and()
-			.sessionManagement() /* uma sessão com mesmo usuario
-				.maximumSessions(1)
-				.expiredUrl("/login");*/
-				.invalidSessionUrl("/login");
+		.authorizeRequests()
+			.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
+			.anyRequest().authenticated()
+			.and()
+		.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.and()
+		.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.and()
+		.exceptionHandling()
+			.accessDeniedPage("/403")
+			.and()
+		.sessionManagement()
+			.invalidSessionUrl("/login");
 		
 	}
 	
