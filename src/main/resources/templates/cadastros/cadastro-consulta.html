@@ -56,7 +56,7 @@
 			    
 		     
 				<div class="row" th:if="${consulta.novo}">
-					<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente">
+					<div class="form-group  col-sm-12 sd-required" saude:classforerror="paciente.id">
 						<label class="control-label" for="paciente">Paciente</label>
 						<div class="input-group">
 							<input id="paciente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Paciente"/>
@@ -71,7 +71,7 @@
 				</div>
 				
 				<div class="row" th:if="${consulta.novo}">
-					<div class="form-group  col-sm-12 sd-required" saude:classforerror="medico">
+					<div class="form-group  col-sm-12 sd-required" saude:classforerror="medico.id">
 						<label class="control-label" for="medico">Médico</label>
 						<div class="input-group">
 	      					<input id="medico" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Médico"/>

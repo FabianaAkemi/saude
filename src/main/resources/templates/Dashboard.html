@@ -13,10 +13,48 @@
 
 <section layout:fragment="conteudo">
 
-	<div class="page-header">
-		<div class="container-fluid">
+	<div class="page-header">	
+		<div class="container-fluid">			
 			<h1>Dashboard</h1>
 		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa  fa-heartbeat  fa-3x"></i>
+					</div>
+					<div class="aw-box__value">[[${{totalPacientes}}]]</div>
+					<div class="aw-box__title">Total de Pacientes</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa  fa-hashtag  fa-3x"></i>
+					</div>
+					<div class="aw-box__value">[[${{totalMedicos}}]]</div>
+					<div class="aw-box__title">Total de Médicos</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="aw-box">
+					<div class="aw-box__icon">
+						<i class="fa  fa-users  fa-3x"></i>
+					</div>
+					<div class="aw-box__value">[[${{totalColaboradores}}]]</div>
+					<div class="aw-box__title">Total de Colaboradores</div>
+				</div>
+			</div>
+		</div>
+		
+			<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 sd-home"  align="center">
+                <h2>Seja bem-vindo ao Sistema Geral de Saúde!</h2>
+        	</div>
 	</div>
 
 
