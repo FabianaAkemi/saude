@@ -7,7 +7,7 @@
             driverClass="com.mysql.jdbc.Driver"
             jdbcUrl="jdbc:mysql://localhost/saude?useSSL=false"
             user="root"
-            password="1234"
+            password="fujimoto"
             initialPoolSize="5" 
             minPoolSize="5"
             maxPoolSize="5" 
