@@ -2,7 +2,6 @@ package com.tcc.saude.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -48,7 +47,7 @@ public class ConsultaController {
 	@Autowired
 	private ConsultaValidator consultaValidator;
 	
-	@InitBinder
+	@InitBinder("consulta")
 	public void iniciaValidator(WebDataBinder binder){
 		binder.setValidator(consultaValidator);
 	}
@@ -61,7 +60,7 @@ public class ConsultaController {
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(@Valid Consulta consulta, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
+	public ModelAndView salvar(Consulta consulta, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
 			
 		if (result.hasErrors()) {
 			return nova(consulta);

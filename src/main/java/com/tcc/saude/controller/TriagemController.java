@@ -1,7 +1,6 @@
 package com.tcc.saude.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +42,7 @@ public class TriagemController {
 		@Autowired
 		private TriagemValidator triagemValidator;
 		
-		@InitBinder
+		@InitBinder("triagem")
 		public void iniciaValidator(WebDataBinder binder){
 			binder.setValidator(triagemValidator);
 		}
@@ -56,7 +55,7 @@ public class TriagemController {
 		}
 		
 		@PostMapping("/novo")
-		public ModelAndView salvar(@Valid Triagem triagem, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
+		public ModelAndView salvar(Triagem triagem, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
 			
 			if (result.hasErrors()) {
 				return nova(triagem);
