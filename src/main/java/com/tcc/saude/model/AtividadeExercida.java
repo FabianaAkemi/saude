@@ -3,7 +3,10 @@ package com.tcc.saude.model;
 public enum AtividadeExercida {
 	
 	ATENDENTE ("Atendente"),
-    ENFERMEIRA ("Enfermeira");
+    AUXILIAR_ADM ("Auxiliar administrativo"),
+    ENFERMEIRA ("Enfermeira"),
+    ENFERMEIRO_LIDER ("Lider enfermagem"),
+    ASSISTENTE_SOCIAL ("Assistente Social");    
 
     
     private String atividade;

@@ -9,9 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tcc.saude.controller.page.PageWrapper;
-import com.tcc.saude.controller.validation.ConsultaValidator;
 import com.tcc.saude.model.Consulta;
 import com.tcc.saude.repository.Consultas;
 import com.tcc.saude.repository.Medicos;
@@ -43,14 +40,8 @@ public class ConsultaController {
 	
 	@Autowired
 	private Consultas consultas;
+
 	
-	@Autowired
-	private ConsultaValidator consultaValidator;
-	
-	@InitBinder("consulta")
-	public void iniciaValidator(WebDataBinder binder){
-		binder.setValidator(consultaValidator);
-	}
 	
 	@GetMapping("/novo")
 	public ModelAndView nova(Consulta consulta) {
@@ -61,7 +52,8 @@ public class ConsultaController {
 	
 	@PostMapping("/novo")
 	public ModelAndView salvar(Consulta consulta, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
-			
+		
+	
 		if (result.hasErrors()) {
 			return nova(consulta);
 		}
@@ -97,4 +89,6 @@ public class ConsultaController {
 		mv.addObject(consulta);
 		return mv;
 	}
+	
+
 }

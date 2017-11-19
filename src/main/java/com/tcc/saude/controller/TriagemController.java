@@ -8,9 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tcc.saude.controller.page.PageWrapper;
-import com.tcc.saude.controller.validation.TriagemValidator;
 import com.tcc.saude.model.Triagem;
 import com.tcc.saude.repository.Pacientes;
 import com.tcc.saude.repository.Triagens;
@@ -38,15 +35,8 @@ public class TriagemController {
 		
 		@Autowired
 		private Triagens triagens;
-		
-		@Autowired
-		private TriagemValidator triagemValidator;
-		
-		@InitBinder("triagem")
-		public void iniciaValidator(WebDataBinder binder){
-			binder.setValidator(triagemValidator);
-		}
-		
+	
+	
 		@GetMapping("/novo")
 		public ModelAndView nova(Triagem triagem) {
 			ModelAndView mv = new ModelAndView("cadastros/cadastro-triagem");
@@ -56,6 +46,7 @@ public class TriagemController {
 		
 		@PostMapping("/novo")
 		public ModelAndView salvar(Triagem triagem, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioLogado usuarioLogado) {
+
 			
 			if (result.hasErrors()) {
 				return nova(triagem);
@@ -91,4 +82,6 @@ public class TriagemController {
 			mv.addObject(triagem);
 			return mv;
 		}
+		
+	
 }

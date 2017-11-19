@@ -28,9 +28,10 @@ INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (1, 12);
 
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 5);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 6);
+INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 9);
+INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 10);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 11);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 12);
-
 
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 2);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 3);
@@ -38,6 +39,10 @@ INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 4);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 8);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 9);
 INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (3, 10);
+
+INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (4, 5);
+INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (4, 10);
+INSERT INTO grupo_permissao (grupo_id, permissao_id) VALUES (4, 11);
 
 
 

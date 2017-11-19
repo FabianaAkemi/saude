@@ -37,8 +37,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception { 
 		http
-		.authorizeRequests()
-			.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
+			.authorizeRequests()
+			.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
+			.antMatchers("/usuarios").hasRole("PESQUISAR_USUARIO")			
+			.antMatchers("/colaboradores/novo").hasRole("CADASTRAR_COLABORADOR")
+			.antMatchers("/colaboradores").hasRole("PESQUISAR_COLABORADOR")
+			.antMatchers("/pacientes/novo").hasRole("CADASTRAR_PACIENTE")
+			.antMatchers("/pacientes").hasRole("PESQUISAR_PACIENTE")
+			.antMatchers("/medicos/novo").hasRole("CADASTRAR_MEDICO")
+			.antMatchers("/medicos").hasRole("PESQUISAR_MEDICO")
+			.antMatchers("/triagens/novo").hasRole("CADASTRAR_TRIAGEM")
+			.antMatchers("/triagens").hasRole("PESQUISAR_TRIAGEM")
+			.antMatchers("/consultas/novo").hasRole("CADASTRAR_CONSULTA")
+			.antMatchers("/consultas").hasRole("PESQUISAR_CONSULTA")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
