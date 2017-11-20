@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:saude="http://tcc.saude" 
+      layout:decorate="~{layout/layout-padrao}">
+
+<head>
+	<title>Relatório - Consulta Paciente</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				Relatório de Consulta
+			</h1>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<form method="POST" th:object="${periodoRelatorio}" th:action="@{/relatorios/consultasPacientes}">
+		     <saude:message/>	
+			
+			<div class="row">
+				<div class="form-group  col-sm-12 sd-required">
+					<label class="control-label" for="paciente">Paciente</label>
+					<div class="input-group">
+						<input id="paciente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Paciente"/>
+						<input id="idPaciente" type="hidden" th:field="*{idPaciente}"/>
+						<span class="input-group-btn">
+						  <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaPacientes">
+						  	<i class="glyphicon  glyphicon-search"></i>
+						  </button>
+						</span>
+				    </div>
+				</div>                	
+			</div>
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label for="dataInicio">Data de criação</label>
+					<div class="form-inline">
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" 
+							id="dataInicio" th:field="*{dataInicio}" autocomplete="off"/>
+						<label for="a" class="aw-form-label-between">a</label>
+						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" 
+							id="dataFim" th:field="*{dataFim}" autocomplete="off"/>
+					</div>
+				</div>
+			</div>
+				
+			<button type="submit" class="btn  btn-primary">Emitir</button>
+		</form>
+	</div>
+	<th:block th:replace="pesquisas/rapida/pesquisa-rapida-pacientes :: pesquisaRapidaPacientes"></th:block>
+	
+</section>
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/javascripts/paciente-pesquisa-rapida.js}"></script>
+</th:block>
+</html>
